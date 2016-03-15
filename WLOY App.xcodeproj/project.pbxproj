@@ -1,0 +1,511 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5FC2862F1C98A6D9008A4E84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2862E1C98A6D9008A4E84 /* AppDelegate.swift */; };
+		5FC286311C98A6D9008A4E84 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC286301C98A6D9008A4E84 /* FirstViewController.swift */; };
+		5FC286331C98A6D9008A4E84 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC286321C98A6D9008A4E84 /* SecondViewController.swift */; };
+		5FC286361C98A6D9008A4E84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FC286341C98A6D9008A4E84 /* Main.storyboard */; };
+		5FC286381C98A6D9008A4E84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FC286371C98A6D9008A4E84 /* Assets.xcassets */; };
+		5FC2863B1C98A6D9008A4E84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FC286391C98A6D9008A4E84 /* LaunchScreen.storyboard */; };
+		5FC286461C98A6D9008A4E84 /* WLOY_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC286451C98A6D9008A4E84 /* WLOY_AppTests.swift */; };
+		5FC286511C98A6D9008A4E84 /* WLOY_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC286501C98A6D9008A4E84 /* WLOY_AppUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5FC286421C98A6D9008A4E84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5FC286231C98A6D9008A4E84 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5FC2862A1C98A6D9008A4E84;
+			remoteInfo = "WLOY App";
+		};
+		5FC2864D1C98A6D9008A4E84 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5FC286231C98A6D9008A4E84 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5FC2862A1C98A6D9008A4E84;
+			remoteInfo = "WLOY App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		5FC2862B1C98A6D9008A4E84 /* WLOY App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WLOY App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FC2862E1C98A6D9008A4E84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5FC286301C98A6D9008A4E84 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		5FC286321C98A6D9008A4E84 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		5FC286351C98A6D9008A4E84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5FC286371C98A6D9008A4E84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5FC2863A1C98A6D9008A4E84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5FC2863C1C98A6D9008A4E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FC286411C98A6D9008A4E84 /* WLOY AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WLOY AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FC286451C98A6D9008A4E84 /* WLOY_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLOY_AppTests.swift; sourceTree = "<group>"; };
+		5FC286471C98A6D9008A4E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FC2864C1C98A6D9008A4E84 /* WLOY AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WLOY AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FC286501C98A6D9008A4E84 /* WLOY_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLOY_AppUITests.swift; sourceTree = "<group>"; };
+		5FC286521C98A6D9008A4E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5FC286281C98A6D9008A4E84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5FC2863E1C98A6D9008A4E84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5FC286491C98A6D9008A4E84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5FC286221C98A6D9008A4E84 = {
+			isa = PBXGroup;
+			children = (
+				5FC2862D1C98A6D9008A4E84 /* WLOY App */,
+				5FC286441C98A6D9008A4E84 /* WLOY AppTests */,
+				5FC2864F1C98A6D9008A4E84 /* WLOY AppUITests */,
+				5FC2862C1C98A6D9008A4E84 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5FC2862C1C98A6D9008A4E84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5FC2862B1C98A6D9008A4E84 /* WLOY App.app */,
+				5FC286411C98A6D9008A4E84 /* WLOY AppTests.xctest */,
+				5FC2864C1C98A6D9008A4E84 /* WLOY AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5FC2862D1C98A6D9008A4E84 /* WLOY App */ = {
+			isa = PBXGroup;
+			children = (
+				5FC2862E1C98A6D9008A4E84 /* AppDelegate.swift */,
+				5FC286301C98A6D9008A4E84 /* FirstViewController.swift */,
+				5FC286321C98A6D9008A4E84 /* SecondViewController.swift */,
+				5FC286341C98A6D9008A4E84 /* Main.storyboard */,
+				5FC286371C98A6D9008A4E84 /* Assets.xcassets */,
+				5FC286391C98A6D9008A4E84 /* LaunchScreen.storyboard */,
+				5FC2863C1C98A6D9008A4E84 /* Info.plist */,
+			);
+			path = "WLOY App";
+			sourceTree = "<group>";
+		};
+		5FC286441C98A6D9008A4E84 /* WLOY AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				5FC286451C98A6D9008A4E84 /* WLOY_AppTests.swift */,
+				5FC286471C98A6D9008A4E84 /* Info.plist */,
+			);
+			path = "WLOY AppTests";
+			sourceTree = "<group>";
+		};
+		5FC2864F1C98A6D9008A4E84 /* WLOY AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5FC286501C98A6D9008A4E84 /* WLOY_AppUITests.swift */,
+				5FC286521C98A6D9008A4E84 /* Info.plist */,
+			);
+			path = "WLOY AppUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5FC2862A1C98A6D9008A4E84 /* WLOY App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5FC286551C98A6D9008A4E84 /* Build configuration list for PBXNativeTarget "WLOY App" */;
+			buildPhases = (
+				5FC286271C98A6D9008A4E84 /* Sources */,
+				5FC286281C98A6D9008A4E84 /* Frameworks */,
+				5FC286291C98A6D9008A4E84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WLOY App";
+			productName = "WLOY App";
+			productReference = 5FC2862B1C98A6D9008A4E84 /* WLOY App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5FC286401C98A6D9008A4E84 /* WLOY AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5FC286581C98A6D9008A4E84 /* Build configuration list for PBXNativeTarget "WLOY AppTests" */;
+			buildPhases = (
+				5FC2863D1C98A6D9008A4E84 /* Sources */,
+				5FC2863E1C98A6D9008A4E84 /* Frameworks */,
+				5FC2863F1C98A6D9008A4E84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5FC286431C98A6D9008A4E84 /* PBXTargetDependency */,
+			);
+			name = "WLOY AppTests";
+			productName = "WLOY AppTests";
+			productReference = 5FC286411C98A6D9008A4E84 /* WLOY AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5FC2864B1C98A6D9008A4E84 /* WLOY AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5FC2865B1C98A6D9008A4E84 /* Build configuration list for PBXNativeTarget "WLOY AppUITests" */;
+			buildPhases = (
+				5FC286481C98A6D9008A4E84 /* Sources */,
+				5FC286491C98A6D9008A4E84 /* Frameworks */,
+				5FC2864A1C98A6D9008A4E84 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5FC2864E1C98A6D9008A4E84 /* PBXTargetDependency */,
+			);
+			name = "WLOY AppUITests";
+			productName = "WLOY AppUITests";
+			productReference = 5FC2864C1C98A6D9008A4E84 /* WLOY AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5FC286231C98A6D9008A4E84 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "William Robbins";
+				TargetAttributes = {
+					5FC2862A1C98A6D9008A4E84 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					5FC286401C98A6D9008A4E84 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 5FC2862A1C98A6D9008A4E84;
+					};
+					5FC2864B1C98A6D9008A4E84 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 5FC2862A1C98A6D9008A4E84;
+					};
+				};
+			};
+			buildConfigurationList = 5FC286261C98A6D9008A4E84 /* Build configuration list for PBXProject "WLOY App" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5FC286221C98A6D9008A4E84;
+			productRefGroup = 5FC2862C1C98A6D9008A4E84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5FC2862A1C98A6D9008A4E84 /* WLOY App */,
+				5FC286401C98A6D9008A4E84 /* WLOY AppTests */,
+				5FC2864B1C98A6D9008A4E84 /* WLOY AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5FC286291C98A6D9008A4E84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FC2863B1C98A6D9008A4E84 /* LaunchScreen.storyboard in Resources */,
+				5FC286381C98A6D9008A4E84 /* Assets.xcassets in Resources */,
+				5FC286361C98A6D9008A4E84 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5FC2863F1C98A6D9008A4E84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5FC2864A1C98A6D9008A4E84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5FC286271C98A6D9008A4E84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FC286331C98A6D9008A4E84 /* SecondViewController.swift in Sources */,
+				5FC2862F1C98A6D9008A4E84 /* AppDelegate.swift in Sources */,
+				5FC286311C98A6D9008A4E84 /* FirstViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5FC2863D1C98A6D9008A4E84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FC286461C98A6D9008A4E84 /* WLOY_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5FC286481C98A6D9008A4E84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FC286511C98A6D9008A4E84 /* WLOY_AppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5FC286431C98A6D9008A4E84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5FC2862A1C98A6D9008A4E84 /* WLOY App */;
+			targetProxy = 5FC286421C98A6D9008A4E84 /* PBXContainerItemProxy */;
+		};
+		5FC2864E1C98A6D9008A4E84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5FC2862A1C98A6D9008A4E84 /* WLOY App */;
+			targetProxy = 5FC2864D1C98A6D9008A4E84 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5FC286341C98A6D9008A4E84 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5FC286351C98A6D9008A4E84 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5FC286391C98A6D9008A4E84 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5FC2863A1C98A6D9008A4E84 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5FC286531C98A6D9008A4E84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5FC286541C98A6D9008A4E84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5FC286561C98A6D9008A4E84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "WLOY App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "wloy.WLOY-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5FC286571C98A6D9008A4E84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "WLOY App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "wloy.WLOY-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5FC286591C98A6D9008A4E84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "WLOY AppTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "wloy.WLOY-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WLOY App.app/WLOY App";
+			};
+			name = Debug;
+		};
+		5FC2865A1C98A6D9008A4E84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "WLOY AppTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "wloy.WLOY-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WLOY App.app/WLOY App";
+			};
+			name = Release;
+		};
+		5FC2865C1C98A6D9008A4E84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "WLOY AppUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "wloy.WLOY-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "WLOY App";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		5FC2865D1C98A6D9008A4E84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "WLOY AppUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "wloy.WLOY-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "WLOY App";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5FC286261C98A6D9008A4E84 /* Build configuration list for PBXProject "WLOY App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FC286531C98A6D9008A4E84 /* Debug */,
+				5FC286541C98A6D9008A4E84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5FC286551C98A6D9008A4E84 /* Build configuration list for PBXNativeTarget "WLOY App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FC286561C98A6D9008A4E84 /* Debug */,
+				5FC286571C98A6D9008A4E84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5FC286581C98A6D9008A4E84 /* Build configuration list for PBXNativeTarget "WLOY AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FC286591C98A6D9008A4E84 /* Debug */,
+				5FC2865A1C98A6D9008A4E84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		5FC2865B1C98A6D9008A4E84 /* Build configuration list for PBXNativeTarget "WLOY AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FC2865C1C98A6D9008A4E84 /* Debug */,
+				5FC2865D1C98A6D9008A4E84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5FC286231C98A6D9008A4E84 /* Project object */;
+}
