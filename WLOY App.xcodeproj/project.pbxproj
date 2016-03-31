@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F30ED941CAB25D4009FCEE7 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F30ED931CAB25D4009FCEE7 /* CalendarViewController.swift */; };
+		5FA68B8F1CAD747900E0E205 /* WLOYSongParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA68B8E1CAD747900E0E205 /* WLOYSongParserDelegate.swift */; };
 		5FBC57F31CAB286F0063BFCB /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBC57F21CAB286F0063BFCB /* RequestViewController.swift */; };
 		5FBC57F51CAB28DF0063BFCB /* WebBrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBC57F41CAB28DF0063BFCB /* WebBrowserViewController.swift */; };
 		5FC2862F1C98A6D9008A4E84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC2862E1C98A6D9008A4E84 /* AppDelegate.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		5F30ED931CAB25D4009FCEE7 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		5FA68B8E1CAD747900E0E205 /* WLOYSongParserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WLOYSongParserDelegate.swift; sourceTree = "<group>"; };
 		5FBC57F21CAB286F0063BFCB /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		5FBC57F41CAB28DF0063BFCB /* WebBrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebBrowserViewController.swift; sourceTree = "<group>"; };
 		5FC2862B1C98A6D9008A4E84 /* WLOY App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WLOY App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +109,7 @@
 			children = (
 				5FC2862E1C98A6D9008A4E84 /* AppDelegate.swift */,
 				5FC286301C98A6D9008A4E84 /* NowPlayingViewController.swift */,
+				5FA68B8E1CAD747900E0E205 /* WLOYSongParserDelegate.swift */,
 				5FC286321C98A6D9008A4E84 /* ScheduleViewController.swift */,
 				5FC286341C98A6D9008A4E84 /* Main.storyboard */,
 				5FBC57F41CAB28DF0063BFCB /* WebBrowserViewController.swift */,
@@ -271,6 +274,7 @@
 				5F30ED941CAB25D4009FCEE7 /* CalendarViewController.swift in Sources */,
 				5FC286331C98A6D9008A4E84 /* ScheduleViewController.swift in Sources */,
 				5FBC57F51CAB28DF0063BFCB /* WebBrowserViewController.swift in Sources */,
+				5FA68B8F1CAD747900E0E205 /* WLOYSongParserDelegate.swift in Sources */,
 				5FBC57F31CAB286F0063BFCB /* RequestViewController.swift in Sources */,
 				5FC2862F1C98A6D9008A4E84 /* AppDelegate.swift in Sources */,
 				5FC286311C98A6D9008A4E84 /* NowPlayingViewController.swift in Sources */,
