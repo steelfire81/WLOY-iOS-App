@@ -42,6 +42,8 @@ class WLOYSongParserDelegate: NSObject, NSXMLParserDelegate {
     func parserDidStartDocument(parser:NSXMLParser) {
         firstSongFound = false
         parsingFirstSong = false
+        
+        // Store temporary updated song and artist until parsing is complete
         tempCurrentSong = ""
         tempCurrentArtist = ""
     }
