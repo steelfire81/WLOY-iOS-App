@@ -28,7 +28,7 @@ class WebBrowserViewController: UIViewController {
     
     // loadHomePage - go to the WLOY home page
     func loadHomePage() {
-        let homeRequest = NSURLRequest.init(URL:NSURL.init(string:WLOY_HOME)!)
+        let homeRequest = NSURLRequest(URL:NSURL(string:WLOY_HOME)!)
         browser.loadRequest(homeRequest)
     }
 

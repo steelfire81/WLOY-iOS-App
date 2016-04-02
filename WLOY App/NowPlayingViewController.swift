@@ -15,14 +15,18 @@ class NowPlayingViewController: UIViewController {
     let DEFAULT_ARTIST = "Artist Name"
     let DEFAULT_SHOW = "Show Name"
     let DEFAULT_SONG = "Song Name"
-    let FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/last10.xml"
+    let DEFAULT_DJ = "DJ Name"
+    let SONG_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/last10.xml"
     let UPDATE_INTERVAL = 5 // duration of XML update delay, in seconds
+    let SHOW_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/showonair.xml"
     let STREAM_ADDRESS = "http://war.str3am.com:8130/live"
     
     // DATA MEMBERS
     var audioPlayer: AVPlayer!
-    var xmlParser: NSXMLParser!
-    var xmlParserDelegate: WLOYSongParserDelegate!
+    var songXMLParser: NSXMLParser!
+    var songXMLParserDelegate: WLOYSongParserDelegate!
+    var showXMLParser: NSXMLParser!
+    var showXMLParserDelegate: WLOYShowParserDelegate!
     
     // OUTLETS
     @IBOutlet weak var showNameLabel: UILabel!
@@ -34,14 +38,19 @@ class NowPlayingViewController: UIViewController {
         super.viewDidLoad()
         loadAudioPlayer()
         setNowPlayingLabel(DEFAULT_ARTIST, song:DEFAULT_SONG)
-        setCurrentShowLabel(DEFAULT_SHOW)
+        setCurrentShowLabel(DEFAULT_SHOW, dj:DEFAULT_DJ)
         
-        // Initialize XML parser
-        xmlParser = NSXMLParser.init(contentsOfURL:NSURL.init(string: FEED_ADDRESS)!)
-        xmlParserDelegate = WLOYSongParserDelegate.init()
-        xmlParser.delegate = xmlParserDelegate
-        checkXML()
+        // Initialize Song XML Parser
+        songXMLParser = NSXMLParser(contentsOfURL:NSURL(string: SONG_FEED_ADDRESS)!)
+        songXMLParserDelegate = WLOYSongParserDelegate()
+        songXMLParser.delegate = songXMLParserDelegate
+        checkSongXML()
         
+        // Initialize Show XML Parser
+        showXMLParser = NSXMLParser(contentsOfURL:NSURL(string: SHOW_FEED_ADDRESS)!)
+        showXMLParserDelegate = WLOYShowParserDelegate()
+        showXMLParser.delegate = showXMLParserDelegate
+        checkShowXML()
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,8 +58,13 @@ class NowPlayingViewController: UIViewController {
     }
     
     // setCurrentShowLabel - update text on the current show field
-    func setCurrentShowLabel(show: String) {
-        showNameLabel.text = show
+    func setCurrentShowLabel(show: String, dj: String) {
+        if(show == "") {
+            showNameLabel.text = dj
+        }
+        else {
+            showNameLabel.text = show + " - " + dj
+        }
     }
     
     // setNowPlayingLabel - given an artist and song, update the now playing field
@@ -62,18 +76,23 @@ class NowPlayingViewController: UIViewController {
     func startTimerThread() {
         // TODO: Actually get this to work
         NSLog("Timer thread started! (not really)")
-        checkXML()
     }
     
     // checkXML - checks XML file and updates fields to appropriate values
-    func checkXML() {
-        xmlParser.parse()
-        setNowPlayingLabel(xmlParserDelegate.currentArtist, song:xmlParserDelegate.currentSong)
+    func checkSongXML() {
+        songXMLParser.parse()
+        setNowPlayingLabel(songXMLParserDelegate.currentArtist, song:songXMLParserDelegate.currentSong)
+    }
+    
+    // checkShowXML - checks show XML file and updates fields to appropriate values
+    func checkShowXML() {
+        showXMLParser.parse()
+        setCurrentShowLabel(showXMLParserDelegate.currentShowName, dj:showXMLParserDelegate.currentDJ) // TODO: Put show DJ somewhere
     }
     
     // loadAudioPlayer - (re)loads the audio stream into audioPlayer
     func loadAudioPlayer() {
-        audioPlayer = AVPlayer.init(URL:NSURL.init(string:STREAM_ADDRESS)!)
+        audioPlayer = AVPlayer(URL:NSURL(string:STREAM_ADDRESS)!)
         audioPlayer.rate = 1.0
         audioPlayer.volume = volume.value // TODO: Adjust volume as slider changes
         audioPlayer.play()
