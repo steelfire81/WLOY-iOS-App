@@ -20,13 +20,22 @@ class ScheduleViewController: UIViewController {
     let SATURDAY = 7
     
     // CONSTANTS - Other
-    let MAX_SHOWS = 10 // maximum number of shows in schedule table
     let SCHEDULE_ADDRESS = "http://wloy.org/shows/"
     let TIME_UPDATE_INTERVAL = 60 // time between schedule checks in seconds
+    
+    // OUTLETS
+    @IBOutlet weak var scheduleTable: UITableView!
+    
+    // DATA MEMBERS
+    var scheduleDataSource: ScheduleTableDataSource!
     
     // METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Initialize schedule data source
+        scheduleDataSource = ScheduleTableDataSource()
+        scheduleTable.dataSource = scheduleDataSource
         
         // debug
         NSLog(retrieveSchedule())

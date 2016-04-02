@@ -20,6 +20,8 @@
 		5FC2863B1C98A6D9008A4E84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FC286391C98A6D9008A4E84 /* LaunchScreen.storyboard */; };
 		5FC286461C98A6D9008A4E84 /* WLOY_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC286451C98A6D9008A4E84 /* WLOY_AppTests.swift */; };
 		5FC286511C98A6D9008A4E84 /* WLOY_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC286501C98A6D9008A4E84 /* WLOY_AppUITests.swift */; };
+		5FD279B21CB079CE009E9AD7 /* ScheduleTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD279B11CB079CE009E9AD7 /* ScheduleTableDataSource.swift */; };
+		5FD279B41CB07AA4009E9AD7 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD279B31CB07AA4009E9AD7 /* Show.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		5FC2864C1C98A6D9008A4E84 /* WLOY AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WLOY AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FC286501C98A6D9008A4E84 /* WLOY_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLOY_AppUITests.swift; sourceTree = "<group>"; };
 		5FC286521C98A6D9008A4E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5FD279B11CB079CE009E9AD7 /* ScheduleTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableDataSource.swift; sourceTree = "<group>"; };
+		5FD279B31CB07AA4009E9AD7 /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,8 @@
 				5FAA0E631CAF378D000D4F9C /* WLOYShowParserDelegate.swift */,
 				5FC286321C98A6D9008A4E84 /* ScheduleViewController.swift */,
 				5FC286341C98A6D9008A4E84 /* Main.storyboard */,
+				5FD279B11CB079CE009E9AD7 /* ScheduleTableDataSource.swift */,
+				5FD279B31CB07AA4009E9AD7 /* Show.swift */,
 				5FBC57F41CAB28DF0063BFCB /* WebBrowserViewController.swift */,
 				5FBC57F21CAB286F0063BFCB /* RequestViewController.swift */,
 				5F30ED931CAB25D4009FCEE7 /* CalendarViewController.swift */,
@@ -280,7 +286,9 @@
 				5FAA0E641CAF378D000D4F9C /* WLOYShowParserDelegate.swift in Sources */,
 				5FA68B8F1CAD747900E0E205 /* WLOYSongParserDelegate.swift in Sources */,
 				5FBC57F31CAB286F0063BFCB /* RequestViewController.swift in Sources */,
+				5FD279B21CB079CE009E9AD7 /* ScheduleTableDataSource.swift in Sources */,
 				5FC2862F1C98A6D9008A4E84 /* AppDelegate.swift in Sources */,
+				5FD279B41CB07AA4009E9AD7 /* Show.swift in Sources */,
 				5FC286311C98A6D9008A4E84 /* NowPlayingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

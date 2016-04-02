@@ -27,6 +27,7 @@ class WLOYSongParserDelegate: NSObject, NSXMLParserDelegate {
     var tempCurrentSong: String
     var tempCurrentArtist: String
     
+    // METHODS
     override init() {
         currentSong = DEFAULT_SONG
         currentArtist = DEFAULT_ARTIST
