@@ -17,7 +17,7 @@ class NowPlayingViewController: UIViewController {
     let DEFAULT_SONG = "Song Name"
     let DEFAULT_DJ = "DJ Name"
     let SONG_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/last10.xml"
-    let UPDATE_INTERVAL = 5 // duration of XML update delay, in seconds
+    let UPDATE_INTERVAL = 5 // length between XML updates in seconds
     let SHOW_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/showonair.xml"
     let STREAM_ADDRESS = "http://war.str3am.com:8130/live"
     
@@ -32,6 +32,12 @@ class NowPlayingViewController: UIViewController {
     @IBOutlet weak var showNameLabel: UILabel!
     @IBOutlet weak var volume: UISlider!
     @IBOutlet weak var nowPlayingLabel: UILabel!
+    
+    // STORYBOARD ACTIONS
+    // volumeSliderMoved - called whenever the volume slider changes
+    @IBAction func volumeSliderMoved(sender: AnyObject) {
+        audioPlayer.volume = volume.value
+    }
     
     // METHODS
     override func viewDidLoad() {
@@ -94,9 +100,8 @@ class NowPlayingViewController: UIViewController {
     func loadAudioPlayer() {
         audioPlayer = AVPlayer(URL:NSURL(string:STREAM_ADDRESS)!)
         audioPlayer.rate = 1.0
-        audioPlayer.volume = volume.value // TODO: Adjust volume as slider changes
+        audioPlayer.volume = volume.value
         audioPlayer.play()
     }
-
 }
 
