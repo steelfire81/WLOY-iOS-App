@@ -10,14 +10,47 @@ import UIKit
 
 class ScheduleViewController: UIViewController {
 
+    // CONSTANTS - Weekdays
+    let SUNDAY = 1
+    let MONDAY = 2
+    let TUESDAY = 3
+    let WEDNESDAY = 4
+    let THURSDAY = 5
+    let FRIDAY = 6
+    let SATURDAY = 7
+    
+    // CONSTANTS - Other
+    let MAX_SHOWS = 10 // maximum number of shows in schedule table
+    let SCHEDULE_ADDRESS = "http://wloy.org/shows/"
+    let TIME_UPDATE_INTERVAL = 60 // time between schedule checks in seconds
+    
+    // METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // debug
+        NSLog(retrieveSchedule())
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-
+    
+    // getCurrentTime - return the current time and date as NSDateComponents
+    func getCurrentTime() -> NSDateComponents {
+        return NSCalendar.currentCalendar().components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Weekday], fromDate:NSDate())
+    }
+    
+    // retrieveSchedule - return the schedule from the WLOY website as a string (HTML)
+    func retrieveSchedule() -> String {
+        let url = NSURL(string: SCHEDULE_ADDRESS)
+        do {
+            let html = try String(contentsOfURL:url!)
+            return html
+        } catch let error as NSError {
+            NSLog("Error retrieving schedule HTML")
+            return ""
+        }
+    }
 }
 
