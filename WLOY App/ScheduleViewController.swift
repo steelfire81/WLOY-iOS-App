@@ -34,11 +34,11 @@ class ScheduleViewController: UIViewController {
         super.viewDidLoad()
         
         // Initialize schedule data source
-        scheduleDataSource = ScheduleTableDataSource()
+        scheduleDataSource = ScheduleTableDataSource(tv:scheduleTable)
         scheduleTable.dataSource = scheduleDataSource
         
         // debug
-        NSLog(retrieveSchedule())
+        // NSLog(retrieveSchedule())
     }
 
     override func didReceiveMemoryWarning() {

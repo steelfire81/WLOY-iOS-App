@@ -22,6 +22,7 @@ class Show: NSObject {
         startMinute = m
     }
     
+    /*
     // calcTimeToStart - return the number of minutes until the show begins
     func calcTimeToStart() -> Int {
         let currentTime = NSCalendar.currentCalendar().components([NSCalendarUnit.Hour, NSCalendarUnit.Minute], fromDate:NSDate())
@@ -29,4 +30,5 @@ class Show: NSObject {
         let currentMinute = currentTime.minute
         
     }
+    */
 }
