@@ -93,7 +93,7 @@ class NowPlayingViewController: UIViewController {
     // checkShowXML - checks show XML file and updates fields to appropriate values
     func checkShowXML() {
         showXMLParser.parse()
-        setCurrentShowLabel(showXMLParserDelegate.currentShowName, dj:showXMLParserDelegate.currentDJ) // TODO: Put show DJ somewhere
+        setCurrentShowLabel(showXMLParserDelegate.currentShowName, dj:showXMLParserDelegate.currentDJ)
     }
     
     // loadAudioPlayer - (re)loads the audio stream into audioPlayer

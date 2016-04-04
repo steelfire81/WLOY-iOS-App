@@ -36,9 +36,7 @@ class ScheduleViewController: UIViewController {
         // Initialize schedule data source
         scheduleDataSource = ScheduleTableDataSource(tv:scheduleTable)
         scheduleTable.dataSource = scheduleDataSource
-        
-        // debug
-        // NSLog(retrieveSchedule())
+        scheduleDataSource.updateSchedule()
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +48,7 @@ class ScheduleViewController: UIViewController {
         return NSCalendar.currentCalendar().components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Weekday], fromDate:NSDate())
     }
     
+    /*
     // retrieveSchedule - return the schedule from the WLOY website as a string (HTML)
     func retrieveSchedule() -> String {
         let url = NSURL(string: SCHEDULE_ADDRESS)
@@ -61,5 +60,6 @@ class ScheduleViewController: UIViewController {
             return ""
         }
     }
+    */
 }
 

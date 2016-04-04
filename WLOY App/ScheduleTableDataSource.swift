@@ -15,9 +15,10 @@ class ScheduleTableDataSource: NSObject, UITableViewDataSource {
     let CELL_IDENTIFIER = "BROADCAST_SCHEDULE_CELL"
     let DEFAULT_SHOW_LABEL = "EMPTY SHOW"
     let DEFAULT_SHOW_HOUR = 12
-    let DEFAULT_SHOW_MINUTE = 00
+    let DEFAULT_SHOW_MINUTE = 0
     let MAX_SHOWS = 10 // maximum number of shows in schedule table
     let NUM_SECTIONS = 1
+    let SCHEDULE_ADDRESS = "http://wloy.org/shows"
     
     // DATA MEMBERS
     var showArray = [Show]()
@@ -67,5 +68,13 @@ class ScheduleTableDataSource: NSObject, UITableViewDataSource {
         else {
             cell.detailTextLabel?.text = String(show.startHour) + ":" + String(show.startMinute)
         }
+    }
+    
+    // updateSchedule - takes an HTML page as a string and parses it to update the schedule table
+    func updateSchedule() {
+        let scheduleXMLParser = NSXMLParser(contentsOfURL:NSURL(string:SCHEDULE_ADDRESS)!)
+        let scheduleXMLParserDelegate = WLOYScheduleParserDelegate()
+        scheduleXMLParser!.delegate = scheduleXMLParserDelegate
+        scheduleXMLParser!.parse()
     }
 }
