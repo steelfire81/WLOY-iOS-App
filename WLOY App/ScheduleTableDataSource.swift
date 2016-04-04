@@ -12,7 +12,7 @@ import UIKit
 class ScheduleTableDataSource: NSObject, UITableViewDataSource {
     
     // CONSTANTS
-    let CELL_IDENTIFIER = "cell"
+    let CELL_IDENTIFIER = "BROADCAST_SCHEDULE_CELL"
     let DEFAULT_SHOW_LABEL = "EMPTY SHOW"
     let DEFAULT_SHOW_HOUR = 12
     let DEFAULT_SHOW_MINUTE = 00
@@ -40,20 +40,32 @@ class ScheduleTableDataSource: NSObject, UITableViewDataSource {
         return MAX_SHOWS
     }
     
+    // cellForRowAtIndexPath - tell what cell to be displayed at a given index path
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER) {
             let show = showArray[indexPath.row]
-            cell.textLabel?.text = show.name
-            cell.detailTextLabel?.text = String(show.startHour) + ":" + String(show.startMinute)
+            updateCellData(cell, show:show)
             return cell
         }
         else {
             // fatalError("Unknown cell identifier - " + String(indexPath.row))
             let newCell = UITableViewCell(style:UITableViewCellStyle.Subtitle, reuseIdentifier:CELL_IDENTIFIER)
             let show = showArray[indexPath.row]
-            newCell.textLabel?.text = show.name
-            newCell.detailTextLabel?.text = String(show.startHour) + ":" + String(show.startMinute)
+            updateCellData(newCell, show:show)
             return newCell
+        }
+    }
+    
+    // updateCellData - change a cell's display to show a given show's information
+    func updateCellData(cell:UITableViewCell, show:Show) {
+        cell.textLabel?.text = show.name
+        
+        // If minute is under 10, add an extra 0
+        if(show.startMinute < 10) {
+            cell.detailTextLabel?.text = String(show.startHour) + ":0" + String(show.startMinute)
+        }
+        else {
+            cell.detailTextLabel?.text = String(show.startHour) + ":" + String(show.startMinute)
         }
     }
 }
