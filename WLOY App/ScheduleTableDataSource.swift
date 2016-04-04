@@ -41,17 +41,19 @@ class ScheduleTableDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell!
-        
-        if let cell = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER) as UITableViewCell {
-        
-        if(cell == nil) {
-            cell = UITableViewCell(style:UITableViewCellStyle.Default, reuseIdentifier:CELL_IDENTIFIER)
+        if let cell = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER) {
+            let show = showArray[indexPath.row]
+            cell.textLabel?.text = show.name
+            cell.detailTextLabel?.text = String(show.startHour) + ":" + String(show.startMinute)
+            return cell
         }
-        
-        NSLog("OHOHOHOHOHOHOHOHOHOHOHOHOHOHOHOHO")
-        let show = showArray[indexPath.row]
-        cell.textLabel?.text = String(show.startHour) + ":" + String(show.startMinute) + " - " + showArray[indexPath.row].name
-        return cell
+        else {
+            // fatalError("Unknown cell identifier - " + String(indexPath.row))
+            let newCell = UITableViewCell(style:UITableViewCellStyle.Subtitle, reuseIdentifier:CELL_IDENTIFIER)
+            let show = showArray[indexPath.row]
+            newCell.textLabel?.text = show.name
+            newCell.detailTextLabel?.text = String(show.startHour) + ":" + String(show.startMinute)
+            return newCell
+        }
     }
 }
