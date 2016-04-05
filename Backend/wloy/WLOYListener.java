@@ -1,13 +1,10 @@
 package wloy;
 
-import java.util.Date;
-
 public class WLOYListener {
-
+	
 	// DATA MEMBERS
 	private int identifier;
-	private int minutesListened;
-	private Date lastContact;
+	private int timeConnected;
 	
 	// METHODS
 	/**
@@ -18,7 +15,7 @@ public class WLOYListener {
 	public WLOYListener(int id)
 	{
 		identifier = id;
-		minutesListened = 0;
+		timeConnected = 0;
 	}
 	
 	/**
@@ -32,23 +29,33 @@ public class WLOYListener {
 	}
 	
 	/**
-	 * returns the number of minutes this listener has been / was connected
+	 * updates the time of last contact with this listener 
 	 * 
-	 * @return number of minutes this listeners has been / was connected
+	 * @param lc last time this user was contacted
 	 */
-	public int getMinutesListened()
+	public void updateLastContact(int tc)
 	{
-		return minutesListened;
+		timeConnected = tc;
 	}
 	
 	/**
-	 * returns a string representation of this listener
+	 * calculates the time this user has been connected from first/last contact
 	 * 
-	 * @return a string representation of this listener
+	 * @return number of minutes this user has been (or was) connected
+	 */
+	public int getTimeConnected()
+	{
+		return timeConnected;
+	}
+	
+	/**
+	 * returns a String representation of this listener
+	 * 
+	 * @return a csv-storable representation of this listener
 	 */
 	@Override
 	public String toString()
 	{
-		return identifier + "," + minutesListened;
+		return identifier + "," + timeConnected;
 	}
 }
