@@ -19,15 +19,25 @@ public class WLOYBackendServer {
 	private static final String ERR_PORT_HIGH = "ERROR: Maximum port # is " + PORT_MAX;
 	
 	// DATA MEMBERS
-	Hashtable<Integer, WLOYListener> activeListeners;
-	ArrayList<WLOYListener> finishedListeners;
+	private Hashtable<Integer, WLOYListener> activeListeners;
+	private ArrayList<WLOYListener> finishedListeners;
+	private ArrayList<WLOYRequest> requests;
+	private ArrayList<WLOYFeedback> feedback;
 	
 	// METHODS
+	/**
+	 * initializes a WLOYBackendServer
+	 * 
+	 * @param port port on which to listen for connections
+	 * @throws IOException thrown if socket could not be opened
+	 */
 	private WLOYBackendServer(int port) throws IOException
 	{
 		// Initialize data stores
 		activeListeners = new Hashtable<Integer, WLOYListener>();
 		finishedListeners = new ArrayList<WLOYListener>();
+		requests = new ArrayList<WLOYRequest>();
+		feedback = new ArrayList<WLOYFeedback>();
 		
 		// Start socket
 		ServerSocket socket = new ServerSocket(port);
@@ -35,7 +45,7 @@ public class WLOYBackendServer {
 		System.out.println("Server address: " + InetAddress.getLocalHost());
 		System.out.println();
 		
-		boolean active = true;
+		boolean active = true; // TODO: Close this loop
 		while(active)
 		{
 			WLOYBackendServerThread thread = new WLOYBackendServerThread(socket.accept(), this);
@@ -84,7 +94,40 @@ public class WLOYBackendServer {
 		}
 	}
 	
-	// main - initialize a server
+	/**
+	 * handles a client's message giving feedback for a song being played
+	 * 
+	 * @param positive <b>true</b> if feedback is positive, <b>false</b> if negative
+	 * @param songTitle song's title
+	 * @param artist song's artist
+	 * @param show current show name
+	 * @param dj dj name
+	 */
+	public void feedbackMessageReceived(boolean positive, String songTitle, String artist, String show, String dj)
+	{
+		WLOYFeedback fb = new WLOYFeedback(positive, songTitle, artist, show, dj);
+		feedback.add(fb);
+	}
+	
+	/**
+	 * handle's a client's message requesting a song to be played
+	 * 
+	 * @param songTitle
+	 * @param artist
+	 */
+	public void requestMessageReceived(String songTitle, String artist)
+	{
+		WLOYRequest request = new WLOYRequest(songTitle, artist);
+		requests.add(request);
+		System.out.println("Received new request: " + request);
+	}
+	
+	/**
+	 * initializes a server
+	 * 
+	 * @param args may contain a port number as the only argument, or may be empty
+	 * @throws IOException thrown if server could not be initialized
+	 */
 	public static void main(String[] args) throws IOException
 	{
 		if(args.length == 0)
