@@ -1,5 +1,10 @@
 package wloy;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.util.Hashtable;
+
 public class WLOYBackendServer {
 
 	// CONSTANTS - Ports
@@ -12,14 +17,32 @@ public class WLOYBackendServer {
 	private static final String ERR_PORT_LOW = "ERROR: Minimum port # is " + PORT_MIN;
 	private static final String ERR_PORT_HIGH = "ERROR: Maximum port # is " + PORT_MAX;
 	
+	// DATA MEMBERS
+	Hashtable<Integer, WLOYListener> listeners;
+	
 	// METHODS
-	private WLOYBackendServer(int port)
+	private WLOYBackendServer(int port) throws IOException
 	{
-		// TODO: Actually do something here
+		// Initialize data stores
+		listeners = new Hashtable<Integer, WLOYListener>();
+		
+		// Start socket
+		ServerSocket socket = new ServerSocket(port);
+		System.out.println("Socket opened on port " + port);
+		System.out.println("Server address: " + InetAddress.getLocalHost());
+		System.out.println();
+		
+		boolean active = true;
+		while(active)
+		{
+			WLOYBackendServerThread thread = new WLOYBackendServerThread(socket.accept(), this);
+			System.out.println("Connection from " + thread.getAddress());
+			thread.start();
+		}
 	}
 	
 	// main - initialize a server
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
 		if(args.length == 0)
 		{

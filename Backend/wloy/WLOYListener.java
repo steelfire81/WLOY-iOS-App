@@ -1,10 +1,13 @@
 package wloy;
 
+import java.util.Date;
+
 public class WLOYListener {
 
 	// DATA MEMBERS
 	private int identifier;
 	private int minutesListened;
+	private Date lastContact;
 	
 	// METHODS
 	/**
