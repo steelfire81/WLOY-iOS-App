@@ -36,6 +36,20 @@
                                     <action selector="volumeSliderMoved:" destination="9pv-A4-QxB" eventType="valueChanged" id="9rn-UP-4cP"/>
                                 </connections>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4f-pN-JWv">
+                                <rect key="frame" x="273" y="426" width="55" height="30"/>
+                                <state key="normal" title="DISLIKE"/>
+                                <connections>
+                                    <action selector="sendNegativeFeedback:" destination="9pv-A4-QxB" eventType="touchUpInside" id="VKb-Qx-p0o"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Frf-bi-oef">
+                                <rect key="frame" x="285" y="388" width="31" height="30"/>
+                                <state key="normal" title="LIKE"/>
+                                <connections>
+                                    <action selector="sendPositiveFeedback:" destination="9pv-A4-QxB" eventType="touchUpInside" id="An3-Gh-fps"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -46,7 +60,11 @@
                             <constraint firstItem="Uzv-vb-zbp" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="15" id="Tgx-fN-0jO"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="U9M-FJ-sDv" secondAttribute="bottom" constant="15" id="WGp-em-bOG"/>
                             <constraint firstItem="Uzv-vb-zbp" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="Whn-vF-6RQ"/>
+                            <constraint firstItem="Frf-bi-oef" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="XJe-OT-QZT"/>
                             <constraint firstItem="HYG-dN-ShT" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" constant="-20" id="ZBQ-kg-fA3"/>
+                            <constraint firstItem="HYG-dN-ShT" firstAttribute="top" secondItem="r4f-pN-JWv" secondAttribute="bottom" constant="10" id="b4w-Vi-Aa4"/>
+                            <constraint firstItem="r4f-pN-JWv" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="bCA-5N-ifc"/>
+                            <constraint firstItem="r4f-pN-JWv" firstAttribute="top" secondItem="Frf-bi-oef" secondAttribute="bottom" constant="10" id="feO-qR-K0B"/>
                             <constraint firstItem="U9M-FJ-sDv" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" constant="-20" id="yGX-dl-6pg"/>
                         </constraints>
                     </view>

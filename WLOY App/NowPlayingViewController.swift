@@ -16,6 +16,8 @@ class NowPlayingViewController: UIViewController {
     let DEFAULT_SHOW = "Show Name"
     let DEFAULT_SONG = "Song Name"
     let DEFAULT_DJ = "DJ Name"
+    let FEEDBACK_POSITIVE = "POSITIVE"
+    let FEEDBACK_NEGATIVE = "NEGATIVE"
     let SONG_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/last10.xml"
     let UPDATE_INTERVAL = 5 // length between XML updates in seconds
     let SHOW_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/showonair.xml"
@@ -27,6 +29,10 @@ class NowPlayingViewController: UIViewController {
     var songXMLParserDelegate: WLOYSongParserDelegate!
     var showXMLParser: NSXMLParser!
     var showXMLParserDelegate: WLOYShowParserDelegate!
+    var currentSongTitle:String!
+    var currentArtist:String!
+    var currentShow:String!
+    var currentDJ:String!
     
     // OUTLETS
     @IBOutlet weak var showNameLabel: UILabel!
@@ -65,6 +71,9 @@ class NowPlayingViewController: UIViewController {
     
     // setCurrentShowLabel - update text on the current show field
     func setCurrentShowLabel(show: String, dj: String) {
+        currentShow = show
+        currentDJ = dj
+        
         if(show == "") {
             showNameLabel.text = dj
         }
@@ -75,6 +84,9 @@ class NowPlayingViewController: UIViewController {
     
     // setNowPlayingLabel - given an artist and song, update the now playing field
     func setNowPlayingLabel(artist: String, song: String) {
+        currentArtist = artist
+        currentSongTitle = song
+        
         nowPlayingLabel.text = artist + " - " + song
     }
     
@@ -103,5 +115,36 @@ class NowPlayingViewController: UIViewController {
         audioPlayer.volume = volume.value
         audioPlayer.play()
     }
+    
+    // sendFeedback - send like/dislike feedback to the backend server
+    func sendFeedback(positive:Bool) {
+        var feedback = ""
+        if(positive) {
+            feedback = FEEDBACK_POSITIVE
+        }
+        else {
+            feedback = FEEDBACK_NEGATIVE
+        }
+        
+        let title = currentSongTitle
+        let artist = currentArtist
+        let show = currentShow
+        let dj = currentDJ
+        
+        // TODO: Actually send feedback message to server
+        NSLog("Sending " + feedback + " feedback for song " + title! + " by " + artist!)
+        NSLog("(SHOW: " + show! + " / DJ: " + dj! + ")")
+    }
+    
+    // sendPositiveFeedback - called when "Like" button is pressed
+    @IBAction func sendPositiveFeedback(sender: AnyObject) {
+        sendFeedback(true)
+    }
+    
+    // sendNegativeFeedback - called when "Dislike" button is pressed
+    @IBAction func sendNegativeFeedback(sender: AnyObject) {
+        sendFeedback(false)
+    }
+    
 }
 
