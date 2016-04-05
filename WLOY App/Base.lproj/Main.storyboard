@@ -91,9 +91,73 @@
                     <view key="view" contentMode="scaleToFill" id="G15-Vn-6O6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Submit a Request" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZq-Dv-Zz5">
+                                <rect key="frame" x="158" y="20" width="284" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Song Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUf-ic-nY0">
+                                <rect key="frame" x="261" y="66" width="78" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UoC-Jn-v3T">
+                                <rect key="frame" x="99" y="95" width="403" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Mh2-n1-gBf"/>
+                                    <constraint firstAttribute="width" constant="403" id="lAf-oj-Eqt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JI9-EU-PTU">
+                                <rect key="frame" x="279" y="133" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gDm-su-kzT">
+                                <rect key="frame" x="99" y="162" width="403" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7jp-Yc-art"/>
+                                    <constraint firstAttribute="width" constant="403" id="Ice-oJ-KPA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlK-fq-BtB">
+                                <rect key="frame" x="233" y="200" width="134" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="REQUEST"/>
+                                <connections>
+                                    <action selector="requestSong:" destination="vca-H8-jlm" eventType="touchUpInside" id="LJu-GO-vNT"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fUf-ic-nY0" firstAttribute="centerX" secondItem="G15-Vn-6O6" secondAttribute="centerX" id="EbW-IF-ZMd"/>
+                            <constraint firstItem="UoC-Jn-v3T" firstAttribute="centerX" secondItem="G15-Vn-6O6" secondAttribute="centerX" id="Ggz-hc-Exe"/>
+                            <constraint firstItem="UoC-Jn-v3T" firstAttribute="top" secondItem="fUf-ic-nY0" secondAttribute="bottom" constant="10" id="LoM-oI-flX"/>
+                            <constraint firstItem="gDm-su-kzT" firstAttribute="centerX" secondItem="G15-Vn-6O6" secondAttribute="centerX" id="OFf-Fv-Mf2"/>
+                            <constraint firstItem="fUf-ic-nY0" firstAttribute="top" secondItem="uZq-Dv-Zz5" secondAttribute="bottom" constant="15" id="QQo-Xh-1jA"/>
+                            <constraint firstItem="vlK-fq-BtB" firstAttribute="centerX" secondItem="G15-Vn-6O6" secondAttribute="centerX" id="ZcE-nR-oQ8"/>
+                            <constraint firstItem="JI9-EU-PTU" firstAttribute="centerX" secondItem="G15-Vn-6O6" secondAttribute="centerX" id="atr-Vr-Fat"/>
+                            <constraint firstItem="JI9-EU-PTU" firstAttribute="top" secondItem="UoC-Jn-v3T" secondAttribute="bottom" constant="15" id="cvR-js-hoY"/>
+                            <constraint firstItem="vlK-fq-BtB" firstAttribute="top" secondItem="gDm-su-kzT" secondAttribute="bottom" constant="15" id="lNq-Lc-FiB"/>
+                            <constraint firstItem="uZq-Dv-Zz5" firstAttribute="top" secondItem="5f8-n2-0Sw" secondAttribute="bottom" constant="15" id="pZy-Yf-TYV"/>
+                            <constraint firstItem="gDm-su-kzT" firstAttribute="top" secondItem="JI9-EU-PTU" secondAttribute="bottom" constant="10" id="rK2-52-Kxt"/>
+                            <constraint firstItem="uZq-Dv-Zz5" firstAttribute="centerX" secondItem="G15-Vn-6O6" secondAttribute="centerX" id="xHR-E0-5fQ"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Request" id="PFR-cK-U8f"/>
+                    <connections>
+                        <outlet property="artistField" destination="gDm-su-kzT" id="dlP-wE-fTW"/>
+                        <outlet property="songTitleField" destination="UoC-Jn-v3T" id="gTR-82-UKd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ylt-A3-69f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
