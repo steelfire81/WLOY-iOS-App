@@ -12,6 +12,7 @@ class RequestViewController: UIViewController {
 
     // CONSTANTS - Error Messages
     let ERR_NOT_ENOUGH_INFO = "Please provide a song title and artist"
+    let HEADER_REQUEST = "REQUEST"
     
     // OUTLETS
     @IBOutlet weak var songTitleField: UITextField!
@@ -38,8 +39,11 @@ class RequestViewController: UIViewController {
             return
         }
         
-        // All info provided; send request
-        NSLog("Requesting " + title! + " by " + artist!) // TODO: Actually send request to server
+        let message = HEADER_REQUEST + "\n" + title! + "\n" + artist!
+        
+        // TODO: Actually send request to server
+        NSLog("Requesting " + title! + " by " + artist!)
+        NSLog("\n" + message)
         
         // Clear fields
         songTitleField.text = ""

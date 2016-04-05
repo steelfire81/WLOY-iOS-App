@@ -18,6 +18,7 @@ class NowPlayingViewController: UIViewController {
     let DEFAULT_DJ = "DJ Name"
     let FEEDBACK_POSITIVE = "POSITIVE"
     let FEEDBACK_NEGATIVE = "NEGATIVE"
+    let HEADER_FEEDBACK = "FEEDBACK"
     let SONG_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/last10.xml"
     let UPDATE_INTERVAL = 5 // length between XML updates in seconds
     let SHOW_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/showonair.xml"
@@ -131,9 +132,12 @@ class NowPlayingViewController: UIViewController {
         let show = currentShow
         let dj = currentDJ
         
+        let message = HEADER_FEEDBACK + "\n" + feedback + "\n" + title + "\n" + artist + "\n" + show + "\n" + dj + "\n"
+        
         // TODO: Actually send feedback message to server
         NSLog("Sending " + feedback + " feedback for song " + title! + " by " + artist!)
         NSLog("(SHOW: " + show! + " / DJ: " + dj! + ")")
+        NSLog("\n" + message)
     }
     
     // sendPositiveFeedback - called when "Like" button is pressed
