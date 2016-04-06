@@ -107,6 +107,7 @@ public class WLOYBackendServer {
 	{
 		WLOYFeedback fb = new WLOYFeedback(positive, songTitle, artist, show, dj);
 		feedback.add(fb);
+		System.out.println("Received new feedback: " + fb);
 	}
 	
 	/**
