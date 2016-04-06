@@ -92,6 +92,12 @@ public class WLOYBackendServer {
 			else
 				listener.updateLastContact(timeConnected);
 		}
+		
+		// DEBUG
+		System.out.println("Listeners:");
+		ArrayList<WLOYListener> listenerList= new ArrayList<WLOYListener>(activeListeners.values());
+		for(int i = 0; i < listenerList.size(); i++)
+			System.out.println(listenerList.get(i));
 	}
 	
 	/**
@@ -107,7 +113,7 @@ public class WLOYBackendServer {
 	{
 		WLOYFeedback fb = new WLOYFeedback(positive, songTitle, artist, show, dj);
 		feedback.add(fb);
-		System.out.println("Received new feedback: " + fb);
+		System.out.println("Received new feedback: " + fb); // DEBUG
 	}
 	
 	/**
@@ -120,7 +126,7 @@ public class WLOYBackendServer {
 	{
 		WLOYRequest request = new WLOYRequest(songTitle, artist);
 		requests.add(request);
-		System.out.println("Received new request: " + request);
+		System.out.println("Received new request: " + request); // DEBUG
 	}
 	
 	/**
