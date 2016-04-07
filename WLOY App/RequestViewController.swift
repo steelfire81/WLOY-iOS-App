@@ -13,7 +13,6 @@ class RequestViewController: UIViewController {
     // CONSTANTS - Error Messages
     let ERR_NOT_ENOUGH_INFO = "Please provide a song title and artist."
     let ERR_TITLE = "Error"
-    let HEADER_REQUEST = "REQUEST"
     let NOTIFICATION_BUTTON = "OK"
     let NOTIFICATION_SENT = "Request sent!"
     let NOTIFICATION_TITLE = "Success"
@@ -43,11 +42,7 @@ class RequestViewController: UIViewController {
             return
         }
         
-        let message = HEADER_REQUEST + "\n" + title! + "\n" + artist!
-        
-        // TODO: Actually send request to server
-        NSLog("Requesting " + title! + " by " + artist!)
-        NSLog("\n" + message)
+        BackendConnector.sendRequestMessage(title!, artist:artist!)
         
         // Clear fields
         songTitleField.text = ""

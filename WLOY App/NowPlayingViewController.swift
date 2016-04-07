@@ -16,9 +16,6 @@ class NowPlayingViewController: UIViewController {
     let DEFAULT_SHOW = "Show Name"
     let DEFAULT_SONG = "Song Name"
     let DEFAULT_DJ = "DJ Name"
-    let FEEDBACK_POSITIVE = "POSITIVE"
-    let FEEDBACK_NEGATIVE = "NEGATIVE"
-    let HEADER_FEEDBACK = "FEEDBACK"
     let SONG_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/last10.xml"
     let UPDATE_INTERVAL = 5 // length between XML updates in seconds
     let SHOW_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/showonair.xml"
@@ -64,6 +61,10 @@ class NowPlayingViewController: UIViewController {
         showXMLParserDelegate = WLOYShowParserDelegate()
         showXMLParser.delegate = showXMLParserDelegate
         checkShowXML()
+        
+        // Initialize backend connector
+        BackendConnector.generateID()
+        BackendConnector.sendConnectionMessage()
     }
 
     override func didReceiveMemoryWarning() {
@@ -119,25 +120,7 @@ class NowPlayingViewController: UIViewController {
     
     // sendFeedback - send like/dislike feedback to the backend server
     func sendFeedback(positive:Bool) {
-        var feedback = ""
-        if(positive) {
-            feedback = FEEDBACK_POSITIVE
-        }
-        else {
-            feedback = FEEDBACK_NEGATIVE
-        }
-        
-        let title = currentSongTitle
-        let artist = currentArtist
-        let show = currentShow
-        let dj = currentDJ
-        
-        let message = HEADER_FEEDBACK + "\n" + feedback + "\n" + title + "\n" + artist + "\n" + show + "\n" + dj + "\n"
-        
-        // TODO: Actually send feedback message to server
-        NSLog("Sending " + feedback + " feedback for song " + title! + " by " + artist!)
-        NSLog("(SHOW: " + show! + " / DJ: " + dj! + ")")
-        NSLog("\n" + message)
+        BackendConnector.sendFeedbackMessage(positive, songTitle:currentSongTitle, artist:currentArtist, show:currentShow, dj:currentDJ)
     }
     
     // sendPositiveFeedback - called when "Like" button is pressed
