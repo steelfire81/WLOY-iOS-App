@@ -4,7 +4,7 @@ public class Timer extends Thread {
 
 	// CONSTANTS
 	private static final int TIME_INTERVAL = 60000;
-	private static final int SEND_INTERVAL = 5;
+	private static final int SEND_INTERVAL = 1;
 	
 	// DATA MEMBERS
 	private FakeClientEngine parent;

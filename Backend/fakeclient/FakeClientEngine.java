@@ -94,13 +94,14 @@ public class FakeClientEngine implements ActionListener {
 		String message = HEADER_CONNECTION + "\n";
 		message += ID + "\n";
 		message += timer.getTime();
-		sendMessage(message);
-		
+		sendMessage(message);	
 	}
 	
 	private void sendFeedback(boolean positive)
 	{
 		String message = HEADER_FEEDBACK + "\n";
+		message += ID + "\n";
+		message += timer.getTime() + "\n";
 		
 		if(positive)
 			message += FEEDBACK_POSITIVE + "\n";
@@ -115,8 +116,10 @@ public class FakeClientEngine implements ActionListener {
 	}
 	
 	private void sendRequest()
-	{
+	{	
 		String message = HEADER_REQUEST + "\n";
+		message += ID + "\n";
+		message += timer.getTime() + "\n";
 		message += parent.fieldRequestTitle.getText() + "\n";
 		message += parent.fieldRequestArtist.getText();
 		sendMessage(message);
@@ -124,6 +127,12 @@ public class FakeClientEngine implements ActionListener {
 	
 	private void sendMessage(String message)
 	{
+		// Debug: print message
+		System.out.println();
+		System.out.println("SENDING:");
+		System.out.println(message);
+		System.out.println();
+		
 		try
 		{
 			String hostname = parent.fieldIP.getText();
