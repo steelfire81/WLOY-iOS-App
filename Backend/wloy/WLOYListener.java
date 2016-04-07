@@ -1,10 +1,16 @@
 package wloy;
 
+import java.util.Calendar;
+
 public class WLOYListener {
+	
+	// CONSTANTS
+	public static final String[] CSV_COLUMN_HEADERS = {"Identifier", "Minutes Connected", "First Contact"};
 	
 	// DATA MEMBERS
 	private int identifier;
 	private int timeConnected;
+	private String firstContact;
 	
 	// METHODS
 	/**
@@ -16,6 +22,16 @@ public class WLOYListener {
 	{
 		identifier = id;
 		timeConnected = 0;
+		
+		// Set field for first time contacted
+		Calendar calendar = Calendar.getInstance();
+		firstContact = calendar.get(Calendar.MONTH) + "/" + calendar.get(Calendar.DAY_OF_MONTH) + "/" +
+				calendar.get(Calendar.YEAR) + " " + calendar.get(Calendar.HOUR) + ":";
+		int minute = calendar.get(Calendar.MINUTE);
+		if(minute < 10)
+			firstContact += "0" + minute;
+		else
+			firstContact += minute;
 	}
 	
 	/**
@@ -56,6 +72,6 @@ public class WLOYListener {
 	@Override
 	public String toString()
 	{
-		return identifier + "," + timeConnected;
+		return identifier + "," + timeConnected + "," + firstContact;
 	}
 }

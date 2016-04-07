@@ -1,9 +1,12 @@
 package wloy;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Hashtable;
 
 public class WLOYBackendServer {
@@ -15,8 +18,15 @@ public class WLOYBackendServer {
 	
 	// CONSTANTS - Error Messages
 	private static final String ERR_ARGS = "USAGE: WLOYBackendServer [port #]";
+	private static final String ERR_FILE_EXISTS = "ERROR: File already exists";
+	private static final String ERR_FILE_OUTPUT = "ERROR: Could not output data files";
 	private static final String ERR_PORT_LOW = "ERROR: Minimum port # is " + PORT_MIN;
 	private static final String ERR_PORT_HIGH = "ERROR: Maximum port # is " + PORT_MAX;
+	
+	// CONSTANTS - Filenames
+	private static final String FILENAME_CONNECTION = "connections-";
+	private static final String FILENAME_EXTENSION = ".csv";
+	private static final String FILENAME_FEEDBACK = "feedback-";
 	
 	// DATA MEMBERS
 	private Hashtable<Integer, WLOYListener> activeListeners;
@@ -51,7 +61,74 @@ public class WLOYBackendServer {
 			WLOYBackendServerThread thread = new WLOYBackendServerThread(socket.accept(), this);
 			System.out.println("Connection from " + thread.getAddress());
 			thread.start();
+			exportData(); // debug for now
 		}
+		socket.close();
+		
+		// On close, export all data
+		try
+		{
+			exportData();
+		}
+		catch(IOException ioe)
+		{
+			System.err.println(ERR_FILE_OUTPUT);
+		}
+	}
+	
+	/**
+	 * saves listener and feedback data as .csv files
+	 */
+	private void exportData() throws IOException
+	{
+		String connectionFilename = getDatedFilename(FILENAME_CONNECTION);
+		String feedbackFilename = getDatedFilename(FILENAME_FEEDBACK);
+		
+		// Create connection file
+		File connectionFile = new File(connectionFilename);
+		
+		// Create list of all listeners (connected and disconnected)
+		ArrayList<WLOYListener> allListeners = new ArrayList<WLOYListener>(activeListeners.values());
+		for(int i = 0; i < finishedListeners.size(); i++)
+			allListeners.add(finishedListeners.get(i));
+		
+		// Output to connection file
+		PrintWriter connectionFileOutput = new PrintWriter(connectionFile);
+		String connectionHeaderRow = "";
+		for(int i = 0; i < WLOYListener.CSV_COLUMN_HEADERS.length; i++)
+			connectionHeaderRow += WLOYListener.CSV_COLUMN_HEADERS[i] + ",";
+		connectionHeaderRow = connectionHeaderRow.substring(0, connectionHeaderRow.length() - 1); // remove last comma
+		connectionFileOutput.println(connectionHeaderRow);
+		for(int i = 0; i < allListeners.size(); i++)
+			connectionFileOutput.println(allListeners.get(i));
+		connectionFileOutput.close();
+		
+		// Create feedback file
+		File feedbackFile = new File(feedbackFilename);
+		
+		// Output to feedback file
+		PrintWriter feedbackFileOutput = new PrintWriter(feedbackFile);
+		String feedbackHeaderRow = "";
+		for(int i = 0; i < WLOYFeedback.CSV_COLUMN_HEADERS.length; i++)
+			feedbackHeaderRow += WLOYFeedback.CSV_COLUMN_HEADERS[i] + ",";
+		feedbackHeaderRow = feedbackHeaderRow.substring(0, feedbackHeaderRow.length() - 1); // remove last comma
+		feedbackFileOutput.println(feedbackHeaderRow);
+		for(int i = 0; i < feedback.size(); i++)
+			feedbackFileOutput.println(feedback.get(i));
+		feedbackFileOutput.close();
+	}
+	
+	/**
+	 * returns a filename for an exported file
+	 * 
+	 * @param head start of filename
+	 * @return appropriate filename with date/time of export
+	 */
+	private String getDatedFilename(String head)
+	{
+		Calendar calendar = Calendar.getInstance();
+		return head + calendar.get(Calendar.YEAR) + "-" + calendar.get(Calendar.MONTH) + "-" + calendar.get(Calendar.DAY_OF_MONTH) +
+				"-" + calendar.get(Calendar.HOUR_OF_DAY) + "-" + calendar.get(Calendar.MINUTE) + FILENAME_EXTENSION; 
 	}
 	
 	/**

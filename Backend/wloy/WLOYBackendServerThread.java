@@ -64,6 +64,8 @@ public class WLOYBackendServerThread extends Thread {
 			 * 
 			 * Feedback:
 			 * HEADER_FEEDBACK
+			 * [Identifier (Int)]
+			 * [Connection time (Int)]
 			 * [FEEDBACK_POSITIVE or FEEDBACK_NEGATIVE]
 			 * [Song Title (String)]
 			 * [Artist (String])
@@ -72,6 +74,8 @@ public class WLOYBackendServerThread extends Thread {
 			 * 
 			 * Request:
 			 * HEADER_REQUEST
+			 * [Identifier (Int)]
+			 * [Connection time (Int)]
 			 * [Song Title (String)]
 			 * [Artist (String)]
 			 */
@@ -79,13 +83,15 @@ public class WLOYBackendServerThread extends Thread {
 			String header = messageScan.nextLine();
 			try
 			{
+				// All messages contain an identifier and time connected to update connection information
+				int id = Integer.parseInt(messageScan.nextLine());
+				int timeConnected = Integer.parseInt(messageScan.nextLine());
+				parent.connectionMessageReceived(id, timeConnected);
+				
 				switch(header)
 				{
 					case HEADER_CONNECTION:
-						int id = Integer.parseInt(messageScan.nextLine());
-						int timeConnected = Integer.parseInt(messageScan.nextLine());
-						parent.connectionMessageReceived(id, timeConnected);
-						break;
+						break; // No additional information, do nothing
 					case HEADER_FEEDBACK:
 						String feedback = messageScan.nextLine();
 						String songTitle = messageScan.nextLine();
@@ -101,6 +107,8 @@ public class WLOYBackendServerThread extends Thread {
 						break;
 					default:
 						System.err.println(ERR_INVALID_MESSAGE);
+						System.err.println(message);
+						System.err.println();
 				}
 			}
 			catch(NumberFormatException nfe)

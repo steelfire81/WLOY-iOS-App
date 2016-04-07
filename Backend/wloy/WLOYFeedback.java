@@ -3,6 +3,7 @@ package wloy;
 public class WLOYFeedback {
 
 	// CONSTANTS
+	public static final String[] CSV_COLUMN_HEADERS = {"Positive/Negative", "Song", "Artist", "Show", "DJ"};
 	private static final String FEEDBACK_POSITIVE = "positive";
 	private static final String FEEDBACK_NEGATIVE = "negative";
 	
