@@ -11,8 +11,12 @@ import UIKit
 class RequestViewController: UIViewController {
 
     // CONSTANTS - Error Messages
-    let ERR_NOT_ENOUGH_INFO = "Please provide a song title and artist"
+    let ERR_NOT_ENOUGH_INFO = "Please provide a song title and artist."
+    let ERR_TITLE = "Error"
     let HEADER_REQUEST = "REQUEST"
+    let NOTIFICATION_BUTTON = "OK"
+    let NOTIFICATION_SENT = "Request sent!"
+    let NOTIFICATION_TITLE = "Success"
     
     // OUTLETS
     @IBOutlet weak var songTitleField: UITextField!
@@ -35,7 +39,7 @@ class RequestViewController: UIViewController {
         
         // Ensure both fields are entered
         if((title == "") || (artist == "")) {
-            NSLog(ERR_NOT_ENOUGH_INFO) // TODO: Make a pop-up notification
+            displayNotification(ERR_NOT_ENOUGH_INFO, title:ERR_TITLE)
             return
         }
         
@@ -48,5 +52,15 @@ class RequestViewController: UIViewController {
         // Clear fields
         songTitleField.text = ""
         artistField.text = ""
+        
+        // Notify user
+        displayNotification(NOTIFICATION_SENT, title:NOTIFICATION_TITLE)
+    }
+    
+    // displayNotification - show a pop up notification with the given text
+    func displayNotification(message:String, title:String) {
+        let notificationController = UIAlertController(title:title, message:message, preferredStyle:UIAlertControllerStyle.Alert)
+        notificationController.addAction(UIAlertAction(title:NOTIFICATION_BUTTON, style:UIAlertActionStyle.Default, handler: nil))
+        presentViewController(notificationController, animated:true, completion:nil)
     }
 }
