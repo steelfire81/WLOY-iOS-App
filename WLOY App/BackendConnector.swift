@@ -42,7 +42,7 @@ class BackendConnector: NSObject {
             feedback = FEEDBACK_NEGATIVE
         }
         
-        let message = HEADER_FEEDBACK + "\n" + feedback + "\n" + String(id) + "\n" + String(timeConnected) + "\n" + songTitle
+        let message = HEADER_FEEDBACK + "\n" + String(id) + "\n" + String(timeConnected) + "\n" + feedback + "\n" + songTitle
             + "\n" + artist + "\n" + show + "\n" + dj
         sendMessage(message)
     }
