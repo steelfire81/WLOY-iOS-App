@@ -1,8 +1,10 @@
 package wloy;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
@@ -50,8 +52,17 @@ public class WLOYBackendServerThread extends Thread {
 	{
 		try
 		{
-			DataInputStream input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-			String message = input.readUTF();
+			BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			// DataInputStream input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+			
+			// Read message
+			String message = "";
+			String readChars;
+			while((readChars = input.readLine()) != null)
+			{
+				System.out.print(readChars + "\n");
+				message += readChars + "\n";
+			}
 			
 			/* Parse Message
 			 * Messages can be connection messages, feedback messages, or request messages.  Messages are
@@ -122,6 +133,7 @@ public class WLOYBackendServerThread extends Thread {
 		catch(IOException ioe)
 		{
 			System.err.println("ERROR: Problem retrieving information from " + getAddress());
+			ioe.printStackTrace();
 		}
 	}
 	
