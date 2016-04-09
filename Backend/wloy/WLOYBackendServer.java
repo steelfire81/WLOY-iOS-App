@@ -18,7 +18,6 @@ public class WLOYBackendServer {
 	
 	// CONSTANTS - Error Messages
 	private static final String ERR_ARGS = "USAGE: WLOYBackendServer [port #]";
-	private static final String ERR_FILE_EXISTS = "ERROR: File already exists";
 	private static final String ERR_FILE_OUTPUT = "ERROR: Could not output data files";
 	private static final String ERR_PORT_LOW = "ERROR: Minimum port # is " + PORT_MIN;
 	private static final String ERR_PORT_HIGH = "ERROR: Maximum port # is " + PORT_MAX;
@@ -143,15 +142,12 @@ public class WLOYBackendServer {
 		{
 			// Check to make sure a listener with this id doesn't already exist
 			WLOYListener existingListener = activeListeners.get(new Integer(id));
-			if(existingListener != null)
+			if(existingListener == null)
 			{
-				activeListeners.remove(new Integer(id));
-				finishedListeners.add(existingListener);
+				// Insert listener with information
+				WLOYListener newListener = new WLOYListener(id);
+				activeListeners.put(new Integer(id), newListener);
 			}
-			
-			// Insert listener with information
-			WLOYListener newListener = new WLOYListener(id);
-			activeListeners.put(new Integer(id), newListener);
 		}
 		else // Existing listener
 		{

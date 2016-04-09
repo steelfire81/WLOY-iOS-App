@@ -1,8 +1,6 @@
 package wloy;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
@@ -17,7 +15,6 @@ public class WLOYBackendServerThread extends Thread {
 	
 	// CONSTANTS - Feedback
 	private static final String FEEDBACK_POSITIVE = "POSITIVE";
-	private static final String FEEDBACK_NEGATIVE = "NEGATIVE";
 	
 	// CONSTANTS - Message Headers
 	private static final String HEADER_CONNECTION = "CONNECTION";
@@ -59,10 +56,7 @@ public class WLOYBackendServerThread extends Thread {
 			String message = "";
 			String readChars;
 			while((readChars = input.readLine()) != null)
-			{
-				System.out.print(readChars + "\n");
 				message += readChars + "\n";
-			}
 			
 			/* Parse Message
 			 * Messages can be connection messages, feedback messages, or request messages.  Messages are
