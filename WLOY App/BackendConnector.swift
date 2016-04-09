@@ -33,7 +33,7 @@ class BackendConnector: NSObject {
     // METHODS
     // sendConnectionMessage - send a message to the server giving time connected
     static func sendConnectionMessage() -> Bool {
-        let message = HEADER_CONNECTION + "\n" + String(id) + "\n" + String(timeConnected)
+        let message = HEADER_CONNECTION + "\n" + String(id) + "\n" + String(timeConnected) + "\n"
         return sendMessage(message)
     }
     
@@ -48,13 +48,13 @@ class BackendConnector: NSObject {
         }
         
         let message = HEADER_FEEDBACK + "\n" + String(id) + "\n" + String(timeConnected) + "\n" + feedback + "\n" + songTitle
-            + "\n" + artist + "\n" + show + "\n" + dj
+            + "\n" + artist + "\n" + show + "\n" + dj + "\n"
         return sendMessage(message)
     }
     
     // sendRequestMessage - send a request to the backend server with a given song name and artist
     static func sendRequestMessage(songTitle:String, artist:String) -> Bool {
-        let message = HEADER_REQUEST + "\n" + String(id) + "\n" + String(timeConnected) + "\n" + songTitle + "\n" + artist
+        let message = HEADER_REQUEST + "\n" + String(id) + "\n" + String(timeConnected) + "\n" + songTitle + "\n" + artist + "\n"
         return sendMessage(message)
     }
     
@@ -81,6 +81,9 @@ class BackendConnector: NSObject {
         
         let buffer:[UInt8] = Array(message.utf8)
         let result = outputStream.write(buffer, maxLength:buffer.count)
+        // testing this
+        outputStream.close()
+        outputStream = nil
         
         // Check if message send failed
         if(result == -1) {
