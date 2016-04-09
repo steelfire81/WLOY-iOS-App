@@ -65,6 +65,7 @@ class NowPlayingViewController: UIViewController {
         // Initialize backend connector
         BackendConnector.generateID()
         BackendConnector.sendConnectionMessage()
+        BackendConnector.startTimer()
     }
 
     override func didReceiveMemoryWarning() {
