@@ -12,18 +12,21 @@ import Foundation
 class BackendConnector: NSObject {
     
     // CONSTANTS
-    static let ADDRESS = "144.126.12.128"
+    static let ADDRESS = "144.126.12.226"
     static let ERR_CONNECTION = "ERROR: Could not send following message to backend server"
     static let FEEDBACK_POSITIVE = "POSITIVE"
     static let FEEDBACK_NEGATIVE = "NEGATIVE"
     static let HEADER_CONNECTION = "CONNECTION"
     static let HEADER_FEEDBACK = "FEEDBACK"
     static let HEADER_REQUEST = "REQUEST"
+    static let MSG_NEW_STREAM = "Opened new output stream"
     static let PORT = 4444
     
     // DATA MEMBERS
     static var id:Int = 0
+    static var outputStream:NSOutputStream!
     static var timeConnected:Int = 0
+    static var connectorDelegate:BackendConnectorDelegate!
     
     // METHODS
     // sendConnectionMessage - send a message to the server giving time connected
@@ -55,19 +58,34 @@ class BackendConnector: NSObject {
     
     // sendMessage - send message through socket
     static func sendMessage(message:String) {
-        var input:NSInputStream?
-        var output:NSOutputStream?
-        NSStream.getStreamsToHostWithName(ADDRESS, port:PORT, inputStream:&input, outputStream:&output)
+        // Ensure an output stream exists
+        if(outputStream == nil) {
+            NSLog(MSG_NEW_STREAM) // DEBUG
+            var input:NSInputStream?
+            var output:NSOutputStream?
+            NSStream.getStreamsToHostWithName(ADDRESS, port:PORT, inputStream:&input, outputStream:&output)
+            outputStream = output!
+            
+            // Ensure a BackendConnectorDelegate exists
+            if(connectorDelegate == nil) {
+                connectorDelegate = BackendConnectorDelegate()
+            }
+            
+            // Verify that streams have opened
+            outputStream.delegate = connectorDelegate
+            outputStream.scheduleInRunLoop(.mainRunLoop(), forMode:NSDefaultRunLoopMode)
+            outputStream.open()
+        }
         
-        let outputStream:NSOutputStream = output!
-        outputStream.open()
         let buffer:[UInt8] = Array(message.utf8)
         let result = outputStream.write(buffer, maxLength:buffer.count)
-        // outputStream.close()
         
         if(result == -1) {
+            // Remove outputStream
+            // outputStream.close()
             NSLog(ERR_CONNECTION)
             NSLog(message)
+            outputStream = nil
         }
     }
     
