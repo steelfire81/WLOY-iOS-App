@@ -21,6 +21,11 @@ public class FakeClientEngine implements ActionListener {
 	private Timer timer;
 	
 	// METHODS
+	/**
+	 * initialize a FakeClientEngine
+	 * 
+	 * @param p FakeClientWindow to which this engine belongs
+	 */
 	public FakeClientEngine(FakeClientWindow p)
 	{
 		parent = p;
@@ -55,6 +60,9 @@ public class FakeClientEngine implements ActionListener {
 			sendRequest();
 	}
 	
+	/**
+	 * try connecting to a backend server if data is specified
+	 */
 	public void connect()
 	{
 		try
@@ -89,6 +97,9 @@ public class FakeClientEngine implements ActionListener {
 		}
 	}
 	
+	/**
+	 * send a simulated message to the server with connection time information
+	 */
 	public void sendConnectionMessage()
 	{
 		String message = HEADER_CONNECTION + "\n";
@@ -97,6 +108,12 @@ public class FakeClientEngine implements ActionListener {
 		sendMessage(message);	
 	}
 	
+	/**
+	 * send a simulated message giving feedback for a specified song and show
+	 * 
+	 * @param positive <b>true</b> if feedback is positive, <b>false</b>
+	 * if negative
+	 */
 	private void sendFeedback(boolean positive)
 	{
 		String message = HEADER_FEEDBACK + "\n";
@@ -115,6 +132,9 @@ public class FakeClientEngine implements ActionListener {
 		sendMessage(message);
 	}
 	
+	/**
+	 * send a simulated request message to the server
+	 */
 	private void sendRequest()
 	{	
 		String message = HEADER_REQUEST + "\n";
@@ -125,6 +145,11 @@ public class FakeClientEngine implements ActionListener {
 		sendMessage(message);
 	}
 	
+	/**
+	 * send a message to the server
+	 * 
+	 * @param message message to send to the server
+	 */
 	private void sendMessage(String message)
 	{
 		// Debug: print message

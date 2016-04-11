@@ -5,6 +5,9 @@ import java.util.Calendar;
 public class WLOYListener {
 	
 	// CONSTANTS
+	/**
+	 * first row to be exported for a listener .csv file
+	 */
 	public static final String[] CSV_COLUMN_HEADERS = {"Identifier", "Minutes Connected", "First Contact"};
 	
 	// DATA MEMBERS
