@@ -17,7 +17,7 @@ class NowPlayingViewController: UIViewController {
     let DEFAULT_SONG = "Song Name"
     let DEFAULT_DJ = "DJ Name"
     let SONG_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/last10.xml"
-    let UPDATE_INTERVAL = 5 // length between XML updates in seconds
+    let UPDATE_INTERVAL = 5.0 // length between XML updates in seconds
     let SHOW_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/showonair.xml"
     let STREAM_ADDRESS = "http://war.str3am.com:8130/live"
     
@@ -31,6 +31,7 @@ class NowPlayingViewController: UIViewController {
     var currentArtist:String!
     var currentShow:String!
     var currentDJ:String!
+    var xmlUpdateTimer:NSTimer!
     
     // OUTLETS
     @IBOutlet weak var showNameLabel: UILabel!
@@ -66,6 +67,9 @@ class NowPlayingViewController: UIViewController {
         BackendConnector.generateID()
         BackendConnector.sendConnectionMessage()
         BackendConnector.startTimer()
+        
+        // Start update timer
+        startTimer()
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,10 +97,15 @@ class NowPlayingViewController: UIViewController {
         nowPlayingLabel.text = artist + " - " + song
     }
     
-    // startTimerThread - create a thread that starts listening for XML updates
-    func startTimerThread() {
-        // TODO: Actually get this to work
-        NSLog("Timer thread started! (not really)")
+    // startTimer - create a thread that starts listening for XML updates
+    func startTimer() {
+        xmlUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(UPDATE_INTERVAL, target:self, selector:"timerFired", userInfo:nil, repeats:true)
+    }
+    
+    // timerFired - check XML whenever timer fires
+    func timerFired() {
+        checkSongXML()
+        checkShowXML()
     }
     
     // checkXML - checks XML file and updates fields to appropriate values
