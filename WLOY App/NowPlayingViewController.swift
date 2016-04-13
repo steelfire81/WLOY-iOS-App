@@ -43,13 +43,12 @@ class NowPlayingViewController: UIViewController {
     @IBOutlet weak var currentArtistLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     
-    // STORYBOARD ACTIONS
+    // METHODS
     // volumeSliderMoved - called whenever the volume slider changes
     @IBAction func volumeSliderMoved(sender: AnyObject) {
         audioPlayer.volume = volume.value
     }
     
-    // METHODS
     override func viewDidLoad() {
         super.viewDidLoad()
         loadAudioPlayer()
