@@ -12,11 +12,13 @@ import AVFoundation
 class NowPlayingViewController: UIViewController {
 
     // CONSTANTS
+    let AUDIO_RATE:Float = 1.0
     let DEFAULT_ARTIST = "Artist Name"
     let DEFAULT_SHOW = "Show Name"
     let DEFAULT_SONG = "Song Name"
     let DEFAULT_DJ = "DJ Name"
     let IMAGE_ANIM_DURATION = 10.0
+    let IMAGE_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/onair.xml"
     let SONG_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/last10.xml"
     let UPDATE_INTERVAL = 5.0 // length between XML updates in seconds
     let SHOW_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/showonair.xml"
@@ -29,6 +31,8 @@ class NowPlayingViewController: UIViewController {
     var songXMLParserDelegate: WLOYSongParserDelegate!
     var showXMLParser: NSXMLParser!
     var showXMLParserDelegate: WLOYShowParserDelegate!
+    var imageXMLParser: NSXMLParser!
+    var imageXMLParserDelegate: WLOYImageParserDelegate!
     var currentSongTitle:String!
     var currentArtist:String!
     var currentShow:String!
@@ -67,6 +71,12 @@ class NowPlayingViewController: UIViewController {
         showXMLParser.delegate = showXMLParserDelegate
         checkShowXML()
         
+        // Initialize Image XML Parser
+        imageXMLParser = NSXMLParser(contentsOfURL:NSURL(string: IMAGE_FEED_ADDRESS)!)
+        imageXMLParserDelegate = WLOYImageParserDelegate()
+        imageXMLParser.delegate = imageXMLParserDelegate
+        checkImageXML()
+        
         // Initialize image view
         updateImageArray([UIImage]())
         
@@ -88,12 +98,8 @@ class NowPlayingViewController: UIViewController {
         currentShow = show
         currentDJ = dj
         
-        if(show == "") {
-            showNameLabel.text = dj
-        }
-        else {
-            showNameLabel.text = show + " - " + dj
-        }
+        showNameLabel.text = show
+        currentDJLabel.text = dj
     }
     
     // setNowPlayingLabel - given an artist and song, update the now playing field
@@ -101,7 +107,8 @@ class NowPlayingViewController: UIViewController {
         currentArtist = artist
         currentSongTitle = song
         
-        nowPlayingLabel.text = artist + " - " + song
+        nowPlayingLabel.text = song
+        currentArtistLabel.text = artist
     }
     
     // startTimer - create a thread that starts listening for XML updates
@@ -127,10 +134,24 @@ class NowPlayingViewController: UIViewController {
         setCurrentShowLabel(showXMLParserDelegate.currentShowName, dj:showXMLParserDelegate.currentDJ)
     }
     
+    // checkImageXML - checks image XML file and updates image array
+    func checkImageXML() {
+        imageXMLParser.parse()
+        
+        // Initialize new array of images
+        var imageArray = [UIImage]()
+        let newImage = imageXMLParserDelegate.getImage()
+        if(newImage != nil) {
+            imageArray.append(newImage)
+        }
+        
+        updateImageArray(imageArray)
+    }
+    
     // loadAudioPlayer - (re)loads the audio stream into audioPlayer
     func loadAudioPlayer() {
         audioPlayer = AVPlayer(URL:NSURL(string:STREAM_ADDRESS)!)
-        audioPlayer.rate = 1.0
+        audioPlayer.rate = AUDIO_RATE
         audioPlayer.volume = volume.value
         audioPlayer.play()
     }

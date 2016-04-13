@@ -11,6 +11,7 @@ import UIKit
 class RequestViewController: UIViewController {
 
     // CONSTANTS - Error Messages
+    let ERR_NETWORK = "Could not connect to requests server"
     let ERR_NOT_ENOUGH_INFO = "Please provide a song title and artist."
     let ERR_TITLE = "Error"
     let NOTIFICATION_BUTTON = "OK"
@@ -42,14 +43,19 @@ class RequestViewController: UIViewController {
             return
         }
         
-        BackendConnector.sendRequestMessage(title!, artist:artist!)
+        let success = BackendConnector.sendRequestMessage(title!, artist:artist!)
         
-        // Clear fields
-        songTitleField.text = ""
-        artistField.text = ""
-        
-        // Notify user
-        displayNotification(NOTIFICATION_SENT, title:NOTIFICATION_TITLE)
+        if(success) {
+            // Clear fields
+            songTitleField.text = ""
+            artistField.text = ""
+            
+            // Notify user
+            displayNotification(NOTIFICATION_SENT, title:NOTIFICATION_TITLE)
+        } else {
+            // Notify user of network error
+            displayNotification(ERR_NETWORK, title:ERR_TITLE)
+        }
     }
     
     // displayNotification - show a pop up notification with the given text
