@@ -1,0 +1,5 @@
+Tasks remaining:
+
+ - add scheduling portion to backend server to allow host to set up, save, load schedule of broadcast times
+ - connect app to backend schedule
+ - Wordpress API for events calendar
