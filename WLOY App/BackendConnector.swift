@@ -12,7 +12,7 @@ import Foundation
 class BackendConnector: NSObject {
     
     // CONSTANTS
-    static let ADDRESS = "144.126.12.226"
+    static let ADDRESS = "belle"
     static let ERR_CONNECTION = "ERROR: Could not send following message to backend server"
     static let FEEDBACK_POSITIVE = "POSITIVE"
     static let FEEDBACK_NEGATIVE = "NEGATIVE"

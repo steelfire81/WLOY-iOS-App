@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F06EF9B1CB6FAAA00D67FDD /* BackendConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F06EF9A1CB6FAAA00D67FDD /* BackendConnector.swift */; };
+		5F2D95391CBEAD99009B704F /* wloy-logo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5F2D95381CBEAD99009B704F /* wloy-logo.gif */; };
 		5F30ED941CAB25D4009FCEE7 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F30ED931CAB25D4009FCEE7 /* CalendarViewController.swift */; };
 		5F4E01B31CB30486008A55C1 /* WLOYScheduleParserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4E01B21CB30486008A55C1 /* WLOYScheduleParserDelegate.swift */; };
 		5FA1C0FE1CB99F45004FA211 /* BackendConnectorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA1C0FD1CB99F45004FA211 /* BackendConnectorDelegate.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		5F06EF9A1CB6FAAA00D67FDD /* BackendConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendConnector.swift; sourceTree = "<group>"; };
+		5F2D95381CBEAD99009B704F /* wloy-logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "wloy-logo.gif"; sourceTree = "<group>"; };
 		5F30ED931CAB25D4009FCEE7 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		5F4E01B21CB30486008A55C1 /* WLOYScheduleParserDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WLOYScheduleParserDelegate.swift; sourceTree = "<group>"; };
 		5FA1C0FD1CB99F45004FA211 /* BackendConnectorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendConnectorDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				5FC2862E1C98A6D9008A4E84 /* AppDelegate.swift */,
 				5FC286371C98A6D9008A4E84 /* Assets.xcassets */,
 				5F06EF9A1CB6FAAA00D67FDD /* BackendConnector.swift */,
+				5FA1C0FD1CB99F45004FA211 /* BackendConnectorDelegate.swift */,
 				5F30ED931CAB25D4009FCEE7 /* CalendarViewController.swift */,
 				5FC2863C1C98A6D9008A4E84 /* Info.plist */,
 				5FC286391C98A6D9008A4E84 /* LaunchScreen.storyboard */,
@@ -132,10 +135,10 @@
 				5FC286321C98A6D9008A4E84 /* ScheduleViewController.swift */,
 				5FD279B31CB07AA4009E9AD7 /* Show.swift */,
 				5FBC57F41CAB28DF0063BFCB /* WebBrowserViewController.swift */,
+				5F2D95381CBEAD99009B704F /* wloy-logo.gif */,
 				5F4E01B21CB30486008A55C1 /* WLOYScheduleParserDelegate.swift */,
 				5FAA0E631CAF378D000D4F9C /* WLOYShowParserDelegate.swift */,
 				5FA68B8E1CAD747900E0E205 /* WLOYSongParserDelegate.swift */,
-				5FA1C0FD1CB99F45004FA211 /* BackendConnectorDelegate.swift */,
 			);
 			path = "WLOY App";
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			files = (
 				5FC2863B1C98A6D9008A4E84 /* LaunchScreen.storyboard in Resources */,
 				5FC286381C98A6D9008A4E84 /* Assets.xcassets in Resources */,
+				5F2D95391CBEAD99009B704F /* wloy-logo.gif in Resources */,
 				5FC286361C98A6D9008A4E84 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,10 +16,12 @@ class NowPlayingViewController: UIViewController {
     let DEFAULT_SHOW = "Show Name"
     let DEFAULT_SONG = "Song Name"
     let DEFAULT_DJ = "DJ Name"
+    let IMAGE_ANIM_DURATION = 10.0
     let SONG_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/last10.xml"
     let UPDATE_INTERVAL = 5.0 // length between XML updates in seconds
     let SHOW_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/showonair.xml"
     let STREAM_ADDRESS = "http://war.str3am.com:8130/live"
+    let WLOY_LOGO_ADDRESS = "wloy-logo.gif"
     
     // DATA MEMBERS
     var audioPlayer: AVPlayer!
@@ -37,6 +39,9 @@ class NowPlayingViewController: UIViewController {
     @IBOutlet weak var showNameLabel: UILabel!
     @IBOutlet weak var volume: UISlider!
     @IBOutlet weak var nowPlayingLabel: UILabel!
+    @IBOutlet weak var currentDJLabel: UILabel!
+    @IBOutlet weak var currentArtistLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     // STORYBOARD ACTIONS
     // volumeSliderMoved - called whenever the volume slider changes
@@ -62,6 +67,9 @@ class NowPlayingViewController: UIViewController {
         showXMLParserDelegate = WLOYShowParserDelegate()
         showXMLParser.delegate = showXMLParserDelegate
         checkShowXML()
+        
+        // Initialize image view
+        updateImageArray([UIImage]())
         
         // Initialize backend connector
         BackendConnector.generateID()
@@ -141,6 +149,19 @@ class NowPlayingViewController: UIViewController {
     // sendNegativeFeedback - called when "Dislike" button is pressed
     @IBAction func sendNegativeFeedback(sender: AnyObject) {
         sendFeedback(false)
+    }
+    
+    // updateImageArray - set the image view to alternate between a new array of images
+    func updateImageArray(imageArray:[UIImage]) {
+        imageView.stopAnimating()
+        
+        // Add wloy logo at the end
+        var updatedImageArray = imageArray
+        updatedImageArray.append(UIImage(named:WLOY_LOGO_ADDRESS)!)
+        
+        imageView.animationImages = updatedImageArray
+        imageView.animationDuration = IMAGE_ANIM_DURATION
+        imageView.startAnimating()
     }
     
 }
