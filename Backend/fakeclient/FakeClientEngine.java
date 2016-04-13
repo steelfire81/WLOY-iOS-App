@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.nio.charset.Charset;
 
 public class FakeClientEngine implements ActionListener {
 
@@ -66,14 +67,7 @@ public class FakeClientEngine implements ActionListener {
 	public void connect()
 	{
 		try
-		{
-			String hostname = parent.fieldIP.getText();
-			int port = Integer.parseInt(parent.fieldPort.getText());
-			
-			// Verify connection
-			Socket socket = new Socket(hostname, port);
-			socket.close();
-			
+		{	
 			// Send connection message
 			timer.start();
 			sendConnectionMessage();
@@ -90,11 +84,6 @@ public class FakeClientEngine implements ActionListener {
 			System.err.println("ERROR: Invalid port");
 			return;
 		}
-		catch(IOException ioe)
-		{
-			System.err.println("ERROR: Could not connect");
-			return;
-		}
 	}
 	
 	/**
@@ -104,7 +93,7 @@ public class FakeClientEngine implements ActionListener {
 	{
 		String message = HEADER_CONNECTION + "\n";
 		message += ID + "\n";
-		message += timer.getTime();
+		message += timer.getTime() + "\n";
 		sendMessage(message);	
 	}
 	
@@ -128,7 +117,7 @@ public class FakeClientEngine implements ActionListener {
 		message += parent.fieldFeedbackTitle.getText() + "\n";
 		message += parent.fieldFeedbackArtist.getText() + "\n";
 		message += parent.fieldFeedbackShow.getText() + "\n";
-		message += parent.fieldFeedbackDJ.getText();
+		message += parent.fieldFeedbackDJ.getText() + "\n";
 		sendMessage(message);
 	}
 	
@@ -141,7 +130,7 @@ public class FakeClientEngine implements ActionListener {
 		message += ID + "\n";
 		message += timer.getTime() + "\n";
 		message += parent.fieldRequestTitle.getText() + "\n";
-		message += parent.fieldRequestArtist.getText();
+		message += parent.fieldRequestArtist.getText() + "\n";
 		sendMessage(message);
 	}
 	
@@ -152,6 +141,8 @@ public class FakeClientEngine implements ActionListener {
 	 */
 	private void sendMessage(String message)
 	{
+		Charset.forName("UTF-8").encode(message);
+		
 		// Debug: print message
 		System.out.println();
 		System.out.println("SENDING:");
@@ -164,7 +155,7 @@ public class FakeClientEngine implements ActionListener {
 			int port = Integer.parseInt(parent.fieldPort.getText());
 			Socket socket = new Socket(hostname, port);
 			DataOutputStream output = new DataOutputStream(socket.getOutputStream());
-			output.writeUTF(message);
+			output.write(message.getBytes("UTF-8"));
 			output.flush();
 			socket.close();
 		}
