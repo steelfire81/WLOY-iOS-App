@@ -49,7 +49,6 @@ class ScheduleTableDataSource: NSObject, UITableViewDataSource {
             return cell
         }
         else {
-            // fatalError("Unknown cell identifier - " + String(indexPath.row))
             let newCell = UITableViewCell(style:UITableViewCellStyle.Subtitle, reuseIdentifier:CELL_IDENTIFIER)
             let show = showArray[indexPath.row]
             updateCellData(newCell, show:show)

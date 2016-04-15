@@ -27,6 +27,8 @@
 		5FC286511C98A6D9008A4E84 /* WLOY_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FC286501C98A6D9008A4E84 /* WLOY_AppUITests.swift */; };
 		5FD279B21CB079CE009E9AD7 /* ScheduleTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD279B11CB079CE009E9AD7 /* ScheduleTableDataSource.swift */; };
 		5FD279B41CB07AA4009E9AD7 /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD279B31CB07AA4009E9AD7 /* Show.swift */; };
+		5FE0B7491CC0076D00503E86 /* CalendarTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE0B7481CC0076D00503E86 /* CalendarTableDataSource.swift */; };
+		5FE0B74B1CC007E300503E86 /* WLOYEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FE0B74A1CC007E300503E86 /* WLOYEvent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		5FC286521C98A6D9008A4E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5FD279B11CB079CE009E9AD7 /* ScheduleTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTableDataSource.swift; sourceTree = "<group>"; };
 		5FD279B31CB07AA4009E9AD7 /* Show.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
+		5FE0B7481CC0076D00503E86 /* CalendarTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTableDataSource.swift; sourceTree = "<group>"; };
+		5FE0B74A1CC007E300503E86 /* WLOYEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WLOYEvent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,7 @@
 				5FC286371C98A6D9008A4E84 /* Assets.xcassets */,
 				5F06EF9A1CB6FAAA00D67FDD /* BackendConnector.swift */,
 				5FA1C0FD1CB99F45004FA211 /* BackendConnectorDelegate.swift */,
+				5FE0B7481CC0076D00503E86 /* CalendarTableDataSource.swift */,
 				5F30ED931CAB25D4009FCEE7 /* CalendarViewController.swift */,
 				5FC2863C1C98A6D9008A4E84 /* Info.plist */,
 				5FC286391C98A6D9008A4E84 /* LaunchScreen.storyboard */,
@@ -138,6 +143,7 @@
 				5FD279B31CB07AA4009E9AD7 /* Show.swift */,
 				5FBC57F41CAB28DF0063BFCB /* WebBrowserViewController.swift */,
 				5F2D95381CBEAD99009B704F /* wloy-logo.gif */,
+				5FE0B74A1CC007E300503E86 /* WLOYEvent.swift */,
 				5F9E15641CBFEA280005F740 /* WLOYImageParserDelegate.swift */,
 				5F4E01B21CB30486008A55C1 /* WLOYScheduleParserDelegate.swift */,
 				5FAA0E631CAF378D000D4F9C /* WLOYShowParserDelegate.swift */,
@@ -296,12 +302,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FE0B7491CC0076D00503E86 /* CalendarTableDataSource.swift in Sources */,
 				5F06EF9B1CB6FAAA00D67FDD /* BackendConnector.swift in Sources */,
 				5F9E15651CBFEA280005F740 /* WLOYImageParserDelegate.swift in Sources */,
 				5F30ED941CAB25D4009FCEE7 /* CalendarViewController.swift in Sources */,
 				5FC286331C98A6D9008A4E84 /* ScheduleViewController.swift in Sources */,
 				5FBC57F51CAB28DF0063BFCB /* WebBrowserViewController.swift in Sources */,
 				5FAA0E641CAF378D000D4F9C /* WLOYShowParserDelegate.swift in Sources */,
+				5FE0B74B1CC007E300503E86 /* WLOYEvent.swift in Sources */,
 				5FA68B8F1CAD747900E0E205 /* WLOYSongParserDelegate.swift in Sources */,
 				5FBC57F31CAB286F0063BFCB /* RequestViewController.swift in Sources */,
 				5FD279B21CB079CE009E9AD7 /* ScheduleTableDataSource.swift in Sources */,
