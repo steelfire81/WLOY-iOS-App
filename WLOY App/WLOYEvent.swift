@@ -31,11 +31,47 @@ class WLOYEvent: NSObject {
     
     // storeToCalendar - save this event to the system calendar
     func storeToCalendar() {
-        var eventStore = EKEventStore()
+        let eventStore = EKEventStore()
         
         eventStore.requestAccessToEntityType(EKEntityType.Event, completion: {
-            (granted, error) in
+            (permissionGiven, error) in
             
+            if(permissionGiven && (error == nil)) {
+                let event = EKEvent(eventStore:eventStore)
+                event.title = self.name
+                
+                // Set start date
+                let startDateComponents = NSDateComponents()
+                startDateComponents.day = self.day
+                startDateComponents.month = self.month
+                startDateComponents.year = self.year
+                startDateComponents.hour = self.hour
+                startDateComponents.minute = self.minute
+                event.startDate = NSCalendar.currentCalendar().dateFromComponents(startDateComponents)!
+                
+                // Set end date (for now, ends 1 hour after start)
+                let endDateComponents = NSDateComponents()
+                endDateComponents.day = self.day
+                endDateComponents.month = self.month
+                endDateComponents.year = self.year
+                endDateComponents.hour = self.hour + 1
+                endDateComponents.minute = self.minute
+                event.endDate = NSCalendar.currentCalendar().dateFromComponents(endDateComponents)!
+                
+                // Store event
+                event.calendar = eventStore.defaultCalendarForNewEvents
+                
+                do {
+                    try eventStore.saveEvent(event, span:EKSpan.ThisEvent)
+                }
+                catch {
+                    // TODO: Error Notification
+                }
+                // TODO: Display pop-up saying event was successfully stored
+            }
+            else {
+                // TODO: Display pop-up notification saying what went wrong
+            }
             
         })
     }

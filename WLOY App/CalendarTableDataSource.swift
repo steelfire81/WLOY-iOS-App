@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CalendarTableDataSource: NSObject, UITableViewDataSource {
+class CalendarTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     // CONSTANTS
     let CALENDAR_ADDRESS = "http://wloy.org/events/"
@@ -72,4 +72,12 @@ class CalendarTableDataSource: NSObject, UITableViewDataSource {
         }
         cell.detailTextLabel?.text = subtitle
     }
+    
+    // didSelectRowAtIndexPath - handle a user tapping a cell
+    func tableView(_ tableView:UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath) {
+        eventArray[indexPath.row].storeToCalendar()
+        tableView.deselectRowAtIndexPath(indexPath, animated:true)
+    }
+    
+    
 }

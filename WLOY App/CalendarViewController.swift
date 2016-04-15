@@ -23,6 +23,7 @@ class CalendarViewController: UIViewController {
         // Initialize calendar data source
         calendarDataSource = CalendarTableDataSource(tv:calendarTable)
         calendarTable.dataSource = calendarDataSource
+        calendarTable.delegate = calendarDataSource
         calendarDataSource.fetchEvents()
     }
 
