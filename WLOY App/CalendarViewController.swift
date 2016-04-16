@@ -10,6 +10,9 @@ import UIKit
 
 class CalendarViewController: UIViewController {
 
+    // CONSTANTS
+    let NOTIFICATION_BUTTON = "OK"
+    
     // OUTLETS
     @IBOutlet weak var calendarTable: UITableView!
     
@@ -21,7 +24,7 @@ class CalendarViewController: UIViewController {
         super.viewDidLoad()
         
         // Initialize calendar data source
-        calendarDataSource = CalendarTableDataSource(tv:calendarTable)
+        calendarDataSource = CalendarTableDataSource(tv:calendarTable, p:self)
         calendarTable.dataSource = calendarDataSource
         calendarTable.delegate = calendarDataSource
         calendarDataSource.fetchEvents()
@@ -30,5 +33,11 @@ class CalendarViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
+    // displayNotification - show a pop-up message with the given text
+    func displayNotification(message:String, title:String) {
+        let notificationController = UIAlertController(title:title, message:message, preferredStyle:UIAlertControllerStyle.Alert)
+        notificationController.addAction(UIAlertAction(title:NOTIFICATION_BUTTON, style:UIAlertActionStyle.Default, handler:nil))
+        presentViewController(notificationController, animated:true, completion:nil)
+    }
 }

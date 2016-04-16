@@ -14,14 +14,20 @@ class CalendarTableDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     // CONSTANTS
     let CALENDAR_ADDRESS = "http://wloy.org/events/"
     let CELL_IDENTIFIER = "CALENDAR_CELL"
+    let NOTIFICATION_ERROR = "ERROR"
+    let NOTIFICATION_ERROR_MESSAGE = "Could not store event in system calendar"
+    let NOTIFICATION_SUCCESS = "SUCCESS"
+    let NOTIFICATION_SUCCESS_MESSAGE = "Successfully stored event in system calendar!"
     let NUM_SECTIONS = 1
     
     // DATA MEMBERS
     var eventArray = [WLOYEvent]()
-    var tableView:UITableView!
+    var tableView:UITableView
+    var parentViewController:CalendarViewController
     
-    init(tv:UITableView) {
+    init(tv:UITableView, p:CalendarViewController) {
         tableView = tv
+        parentViewController = p
     }
     
     // numberOfSectionsInTableView - return number of sections (always equal to NUM_SECTIONS)
@@ -38,8 +44,8 @@ class CalendarTableDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     func fetchEvents() {
         // TEST CODE: List of fake events
         eventArray = [WLOYEvent]()
-        eventArray.append(WLOYEvent(n:"Concert", mo:4, d:29, y:2016, h:4, mi:30))
-        eventArray.append(WLOYEvent(n:"Live Broadcast", mo:4, d:30, y:2016, h:2, mi:00))
+        eventArray.append(WLOYEvent(n:"Concert", mo:4, d:29, y:2016, h:4, mi:30, p:true))
+        eventArray.append(WLOYEvent(n:"Live Broadcast", mo:4, d:30, y:2016, h:2, mi:00, p:true))
         
     }
     
@@ -64,18 +70,35 @@ class CalendarTableDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
         
         // Format time
         var subtitle = String(event.month) + "/" + String(event.day) + "\t\t\t" + String(event.hour) + ":"
+        
         if(event.minute < 10) {
             subtitle = subtitle + "0" + String(event.minute)
         }
         else {
             subtitle = subtitle + String(event.minute)
         }
+        
+        if(event.pm) {
+            subtitle = subtitle + " PM"
+        }
+        else {
+            subtitle = subtitle + " AM"
+        }
+        
         cell.detailTextLabel?.text = subtitle
     }
     
     // didSelectRowAtIndexPath - handle a user tapping a cell
     func tableView(_ tableView:UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath) {
-        eventArray[indexPath.row].storeToCalendar()
+        let success = eventArray[indexPath.row].storeToCalendar()
+        
+        if(success) {
+            parentViewController.displayNotification(NOTIFICATION_SUCCESS_MESSAGE, title:NOTIFICATION_SUCCESS)
+        }
+        else {
+            parentViewController.displayNotification(NOTIFICATION_ERROR_MESSAGE, title:NOTIFICATION_ERROR)
+        }
+        
         tableView.deselectRowAtIndexPath(indexPath, animated:true)
     }
     
