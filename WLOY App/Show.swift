@@ -14,12 +14,14 @@ class Show: NSObject {
     var name: String
     var startHour: Int
     var startMinute: Int
+    var showDescription: String
     
     // METHODS
-    init(n:String, h:Int, m:Int) {
+    init(n:String, h:Int, m:Int, d:String) {
         name = n
         startHour = h
         startMinute = m
+        showDescription = d
     }
     
     /*

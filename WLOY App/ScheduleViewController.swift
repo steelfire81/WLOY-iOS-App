@@ -20,6 +20,7 @@ class ScheduleViewController: UIViewController {
     let SATURDAY = 7
     
     // CONSTANTS - Other
+    let NOTIFICATION_BUTTON = "OK"
     let SCHEDULE_ADDRESS = "http://wloy.org/shows/"
     let TIME_UPDATE_INTERVAL = 60 // time between schedule checks in seconds
     
@@ -34,8 +35,9 @@ class ScheduleViewController: UIViewController {
         super.viewDidLoad()
         
         // Initialize schedule data source
-        scheduleDataSource = ScheduleTableDataSource(tv:scheduleTable)
+        scheduleDataSource = ScheduleTableDataSource(tv:scheduleTable, p:self)
         scheduleTable.dataSource = scheduleDataSource
+        scheduleTable.delegate = scheduleDataSource
         scheduleDataSource.updateSchedule()
     }
 
@@ -46,6 +48,13 @@ class ScheduleViewController: UIViewController {
     // getCurrentTime - return the current time and date as NSDateComponents
     func getCurrentTime() -> NSDateComponents {
         return NSCalendar.currentCalendar().components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Weekday], fromDate:NSDate())
+    }
+    
+    // displayNotification - show a pop-up message with the given text
+    func displayNotification(message:String, title:String) {
+        let notificationController = UIAlertController(title:title, message:message, preferredStyle:UIAlertControllerStyle.Alert)
+        notificationController.addAction(UIAlertAction(title:NOTIFICATION_BUTTON, style:UIAlertActionStyle.Default, handler:nil))
+        presentViewController(notificationController, animated:true, completion:nil)
     }
     
     /*

@@ -9,27 +9,30 @@
 import Foundation
 import UIKit
 
-class ScheduleTableDataSource: NSObject, UITableViewDataSource {
+class ScheduleTableDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     // CONSTANTS
     let CELL_IDENTIFIER = "BROADCAST_SCHEDULE_CELL"
     let DEFAULT_SHOW_LABEL = "EMPTY SHOW"
     let DEFAULT_SHOW_HOUR = 12
     let DEFAULT_SHOW_MINUTE = 0
+    let DEFAULT_SHOW_DESCRIPTION = "DESCRIPTION"
     let MAX_SHOWS = 10 // maximum number of shows in schedule table
     let NUM_SECTIONS = 1
     let SCHEDULE_ADDRESS = "http://wloy.org/shows"
     
     // DATA MEMBERS
     var showArray = [Show]()
-    var tableView: UITableView!
+    var tableView: UITableView
+    var parentViewController:ScheduleViewController
     
     // METHODS
-    init(tv:UITableView) {
+    init(tv:UITableView, p:ScheduleViewController) {
         tableView = tv
+        parentViewController = p
         
         for _ in 0...(MAX_SHOWS - 1) {
-            showArray.append(Show(n:DEFAULT_SHOW_LABEL, h:DEFAULT_SHOW_HOUR, m:DEFAULT_SHOW_MINUTE))
+            showArray.append(Show(n:DEFAULT_SHOW_LABEL, h:DEFAULT_SHOW_HOUR, m:DEFAULT_SHOW_MINUTE, d:DEFAULT_SHOW_DESCRIPTION))
         }
     }
     
@@ -75,5 +78,11 @@ class ScheduleTableDataSource: NSObject, UITableViewDataSource {
         let scheduleXMLParserDelegate = WLOYScheduleParserDelegate()
         scheduleXMLParser!.delegate = scheduleXMLParserDelegate
         scheduleXMLParser!.parse()
+    }
+    
+    // didSelectRowAtIndexPath - handle a user tapping a cell
+    func tableView(_ tableView:UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath) {
+        parentViewController.displayNotification(showArray[indexPath.row].showDescription, title:showArray[indexPath.row].name)
+        tableView.deselectRowAtIndexPath(indexPath, animated:true)
     }
 }
