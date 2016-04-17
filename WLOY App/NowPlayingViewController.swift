@@ -19,6 +19,7 @@ class NowPlayingViewController: UIViewController {
     let DEFAULT_DJ = "DJ Name"
     let IMAGE_ANIM_DURATION = 10.0
     let IMAGE_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/onair.xml"
+    let NOTIFICATION_BUTTON = "OK"
     let SONG_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/last10.xml"
     let UPDATE_INTERVAL = 5.0 // length between XML updates in seconds
     let SHOW_FEED_ADDRESS = "http://wloy.radioactivity.fm/feeds/showonair.xml"
@@ -184,5 +185,11 @@ class NowPlayingViewController: UIViewController {
         imageView.startAnimating()
     }
     
+    // displayNotification - show a pop-up message with the given text
+    func displayNotification(message:String, title:String) {
+        let notificationController = UIAlertController(title:title, message:message, preferredStyle:UIAlertControllerStyle.Alert)
+        notificationController.addAction(UIAlertAction(title:NOTIFICATION_BUTTON, style:UIAlertActionStyle.Default, handler:nil))
+        presentViewController(notificationController, animated:true, completion:nil)
+    }
 }
 

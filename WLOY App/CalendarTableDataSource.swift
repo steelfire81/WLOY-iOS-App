@@ -90,15 +90,18 @@ class CalendarTableDataSource: NSObject, UITableViewDataSource, UITableViewDeleg
     
     // didSelectRowAtIndexPath - handle a user tapping a cell
     func tableView(_ tableView:UITableView, didSelectRowAtIndexPath indexPath:NSIndexPath) {
-        let success = eventArray[indexPath.row].storeToCalendar()
+        let approved = true // TODO: Ask for user's approval to store to calendar
         
-        if(success) {
-            parentViewController.displayNotification(NOTIFICATION_SUCCESS_MESSAGE, title:NOTIFICATION_SUCCESS)
+        if(approved) {
+            let success = eventArray[indexPath.row].storeToCalendar()
+            
+            if(success) {
+                parentViewController.displayNotification(NOTIFICATION_SUCCESS_MESSAGE, title:NOTIFICATION_SUCCESS)
+            }
+            else {
+                parentViewController.displayNotification(NOTIFICATION_ERROR_MESSAGE, title:NOTIFICATION_ERROR)
+            }
         }
-        else {
-            parentViewController.displayNotification(NOTIFICATION_ERROR_MESSAGE, title:NOTIFICATION_ERROR)
-        }
-        
         tableView.deselectRowAtIndexPath(indexPath, animated:true)
     }
     

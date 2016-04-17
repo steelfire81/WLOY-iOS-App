@@ -11,12 +11,16 @@ import UIKit
 class CalendarViewController: UIViewController {
 
     // CONSTANTS
+    let ACCEPT_BUTTON = "Yes"
+    let CALENDAR_TITLE = "Store Event"
+    let DECLINE_BUTTON = "No"
     let NOTIFICATION_BUTTON = "OK"
     
     // OUTLETS
     @IBOutlet weak var calendarTable: UITableView!
     
     // DATA MEMBERS
+    static var approval = false
     var calendarDataSource: CalendarTableDataSource!
     
     // METHODS
@@ -32,6 +36,21 @@ class CalendarViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    // askForCalendarApproval - ask if the user wants to store the event to the calendar
+    func askForCalendarApproval(showName:String) -> Bool {
+        let message = "Add " + showName + " to your phone's calendar?"
+        
+        let notificationController = UIAlertController(title:CALENDAR_TITLE, message:message, preferredStyle:UIAlertControllerStyle.Alert)
+        notificationController.addAction(UIAlertAction(title:ACCEPT_BUTTON, style:UIAlertActionStyle.Default, handler:{
+            (alert) -> Void in
+            CalendarViewController.approval = true}))
+        notificationController.addAction(UIAlertAction(title:DECLINE_BUTTON, style:UIAlertActionStyle.Default, handler:{
+            (alert) -> Void in
+            CalendarViewController.approval = false}))
+        
+        return CalendarViewController.approval
     }
     
     // displayNotification - show a pop-up message with the given text
