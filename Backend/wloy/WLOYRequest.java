@@ -20,6 +20,26 @@ public class WLOYRequest {
 	}
 	
 	/**
+	 * returns the title of the song requested
+	 * 
+	 * @return the title of the song requested
+	 */
+	public String getTitle()
+	{
+		return songTitle;
+	}
+	
+	/**
+	 * returns the artist performing the requested song
+	 * 
+	 * @return the artist performing the requested song
+	 */
+	public String getArtist()
+	{
+		return artist;
+	}
+	
+	/**
 	 * provides a String representation of this WLOYRequest
 	 * 
 	 * @return a String representation of this request
