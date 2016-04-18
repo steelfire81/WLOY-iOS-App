@@ -20,7 +20,6 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendarTable: UITableView!
     
     // DATA MEMBERS
-    static var approval = false
     var calendarDataSource: CalendarTableDataSource!
     
     // METHODS
@@ -38,6 +37,7 @@ class CalendarViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    /*
     // askForCalendarApproval - ask if the user wants to store the event to the calendar
     func askForCalendarApproval(showName:String) -> Bool {
         let message = "Add " + showName + " to your phone's calendar?"
@@ -52,6 +52,7 @@ class CalendarViewController: UIViewController {
         
         return CalendarViewController.approval
     }
+*/
     
     // displayNotification - show a pop-up message with the given text
     func displayNotification(message:String, title:String) {
