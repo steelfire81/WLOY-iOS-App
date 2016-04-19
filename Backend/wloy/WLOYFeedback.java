@@ -3,6 +3,9 @@ package wloy;
 public class WLOYFeedback {
 
 	// CONSTANTS
+	/**
+	 * first row to be exported in a feedback .csv file
+	 */
 	public static final String[] CSV_COLUMN_HEADERS = {"Positive/Negative", "Song", "Artist", "Show", "DJ"};
 	private static final String FEEDBACK_POSITIVE = "positive";
 	private static final String FEEDBACK_NEGATIVE = "negative";
