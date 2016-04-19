@@ -50,6 +50,7 @@ public class WLOYBackendServerThread extends Thread {
 		try
 		{
 			BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			// DataInputStream input = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
 			
 			// Read message
 			String message = "";
