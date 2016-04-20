@@ -37,6 +37,56 @@ public class WLOYFeedback {
 	}
 	
 	/**
+	 * returns the title of the song this feedback is for
+	 * 
+	 * @return the title of the song this feedback is for
+	 */
+	public String getTitle()
+	{
+		return songTitle;
+	}
+	
+	/**
+	 * returns the artist of the song this feedback is for
+	 * 
+	 * @return the artist of the song this feedback is for
+	 */
+	public String getArtist()
+	{
+		return artist;
+	}
+	
+	/**
+	 * returns the show this feedback is for
+	 * 
+	 * @return the show this feedback is for
+	 */
+	public String getShow()
+	{
+		return show;
+	}
+	
+	/**
+	 * returns the DJ this feedback is for
+	 * 
+	 * @return the DJ this feedback is for
+	 */
+	public String getDJ()
+	{
+		return dj;
+	}
+	
+	/**
+	 * returns whether or not this feedback is positive
+	 * 
+	 * @return <b>true</b> if feedback is positive, <b>false</b> if negative
+	 */
+	public boolean isPositive()
+	{
+		return positive;
+	}
+	
+	/**
 	 * returns a string for this feedback that can be stored in a .csv file
 	 * 
 	 * @return a string representation of this feedback

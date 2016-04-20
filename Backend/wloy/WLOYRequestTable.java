@@ -99,7 +99,7 @@ public class WLOYRequestTable extends JTable {
 	private static final String DELETE_CELL_TEXT = "DELETE";
 	
 	// DATA MEMBERS
-	private DefaultTableModel model;
+	private WLOYRequestTableModel model;
 	
 	// METHODS
 	/**
