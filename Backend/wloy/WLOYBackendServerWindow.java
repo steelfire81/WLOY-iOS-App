@@ -2,8 +2,10 @@ package wloy;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -17,15 +19,32 @@ public class WLOYBackendServerWindow {
 	private static final String LABEL_FEEDBACK = "FEEDBACK";
 	private static final String LABEL_REQUESTS = "REQUESTS";
 	
+	// CONSTANTS - Schedule
+	private static final int SCHEDULE_WIDTH = 8;
+	private static final int SCHEDULE_HEIGHT = 5;
+	private static final String SCHEDULE_LABEL_HOUR = "HOUR";
+	private static final String SCHEDULE_LABEL_SUNDAY = "SUNDAY";
+	private static final String SCHEDULE_LABEL_MONDAY = "MONDAY";
+	private static final String SCHEDULE_LABEL_TUESDAY = "TUESDAY";
+	private static final String SCHEDULE_LABEL_WEDNESDAY = "WEDNESDAY";
+	private static final String SCHEDULE_LABEL_THURSDAY = "THURSDAY";
+	private static final String SCHEDULE_LABEL_FRIDAY = "FRIDAY";
+	private static final String SCHEDULE_LABEL_SATURDAY = "SATURDAY";
+	private static final String SCHEDULE_LABEL_AM = "A.M.";
+	private static final String SCHEDULE_LABEL_PM = "P.M.";
+	
 	// CONSTANTS - Window Data
 	private static final String WINDOW_NAME = "WLOY Backend Server";
-	private static final int WINDOW_WIDTH = 800;
-	private static final int WINDOW_HEIGHT = 300;
+	private static final int WINDOW_WIDTH_SCHEDULE = 1200;
+	private static final int WINDOW_HEIGHT_SCHEDULE = 1000;
+	private static final int WINDOW_WIDTH_DJ = 800;
+	private static final int WINDOW_HEIGHT_DJ = 300;
 	
 	// WINDOW ELEMENTS
 	JButton buttonExportData;
 	JFrame frame;
 	JPanel panelDJData;
+	JPanel panelSchedule;
 	WLOYRequestTable tableRequests;
 	WLOYFeedbackTable tableFeedback;
 	
@@ -39,6 +58,12 @@ public class WLOYBackendServerWindow {
 	{
 		// Initialize engine
 		engine = new WLOYBackendServerWindowEngine(this);
+		
+		// Initialize schedule panel
+		panelSchedule = new JPanel(new BorderLayout());
+		JPanel panelScheduleSubpanel = initializeScheduleSubpanel(engine);
+		panelSchedule.add(panelScheduleSubpanel, BorderLayout.CENTER);
+		
 		
 		// Initialize requests panel
 		JPanel panelRequests = new JPanel(new BorderLayout());
@@ -72,10 +97,31 @@ public class WLOYBackendServerWindow {
 		
 		// Make this all visible
 		frame = new JFrame(WINDOW_NAME);
-		frame.setContentPane(panelDJData);
-		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		frame.setContentPane(panelSchedule);
+		frame.setSize(WINDOW_WIDTH_SCHEDULE, WINDOW_HEIGHT_SCHEDULE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+	}
+	
+	/**
+	 * initializes the schedule subpanel
+	 * 
+	 * @param engine an engine to list for button presses on the schedule
+	 * @return an initialized broadcast schedule subpanel
+	 */
+	private JPanel initializeScheduleSubpanel(WLOYBackendServerWindowEngine engine)
+	{
+		JPanel scheduleSubpanel = new JPanel(new GridLayout(SCHEDULE_HEIGHT, SCHEDULE_WIDTH));
+		
+		// Initialize top row labels
+		JTextField labelHour = new JTextField(SCHEDULE_LABEL_HOUR);
+		labelHour.setEditable(false);
+		scheduleSubpanel.add(labelHour);
+		JTextField labelSunday = new JTextField(SCHEDULE_LABEL_SUNDAY);
+		labelSunday.setEditable(false);
+		scheduleSubpanel.add(labelSunday);
+		
+		return scheduleSubpanel;
 	}
 	
 	// main - used only for debugging right now
