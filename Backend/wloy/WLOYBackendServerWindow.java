@@ -61,7 +61,7 @@ public class WLOYBackendServerWindow {
 		
 		// Initialize schedule panel
 		panelSchedule = new JPanel(new BorderLayout());
-		JPanel panelScheduleSubpanel = initializeScheduleSubpanel(engine);
+		JPanel panelScheduleSubpanel = new WLOYSchedulePanel();
 		panelSchedule.add(panelScheduleSubpanel, BorderLayout.CENTER);
 		
 		
@@ -101,27 +101,6 @@ public class WLOYBackendServerWindow {
 		frame.setSize(WINDOW_WIDTH_SCHEDULE, WINDOW_HEIGHT_SCHEDULE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-	}
-	
-	/**
-	 * initializes the schedule subpanel
-	 * 
-	 * @param engine an engine to list for button presses on the schedule
-	 * @return an initialized broadcast schedule subpanel
-	 */
-	private JPanel initializeScheduleSubpanel(WLOYBackendServerWindowEngine engine)
-	{
-		JPanel scheduleSubpanel = new JPanel(new GridLayout(SCHEDULE_HEIGHT, SCHEDULE_WIDTH));
-		
-		// Initialize top row labels
-		JTextField labelHour = new JTextField(SCHEDULE_LABEL_HOUR);
-		labelHour.setEditable(false);
-		scheduleSubpanel.add(labelHour);
-		JTextField labelSunday = new JTextField(SCHEDULE_LABEL_SUNDAY);
-		labelSunday.setEditable(false);
-		scheduleSubpanel.add(labelSunday);
-		
-		return scheduleSubpanel;
 	}
 	
 	// main - used only for debugging right now
