@@ -1,13 +1,57 @@
 package wloy;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class WLOYSchedulePanel extends JPanel {
+public class WLOYSchedulePanel extends JPanel implements ActionListener {
+	
+	/**
+	 * acts as buttons for this schedule panel
+	 */
+	private class WLOYSchedulePanelButton extends JButton {
+		
+		// DATA MEMBERS
+		private int row;
+		private int col;
+		
+		// METHODS
+		public WLOYSchedulePanelButton(String text, int r, int c)
+		{
+			super(text);
+			row = r;
+			col = c;
+		}
+		
+		public int getRow()
+		{
+			return row;
+		}
+		
+		public int getColumn()
+		{
+			return col;
+		}
+		
+		public void clearText()
+		{
+			setText(WLOYSchedulePanel.BUTTON_EMPTY_TEXT);
+		}
+	}
+	
+	// CONSTANTS - Buttons
+	private static final String BUTTON_DATA_ENTRY_TEXT = "SAVE";
+	private static final Color BUTTON_EMPTY_COLOR = Color.WHITE;
+	private static final String BUTTON_EMPTY_TEXT = "---";
+	private static final Color BUTTON_EMPTY_TEXT_COLOR = Color.BLACK;
+	private static final Color BUTTON_SHOW_COLOR = Color.BLACK;
+	private static final Color BUTTON_SHOW_TEXT_COLOR = Color.WHITE;
 	
 	// CONSTANTS - Grid Dimensions
 	private static final int GRID_ROWS = 25;
@@ -25,8 +69,17 @@ public class WLOYSchedulePanel extends JPanel {
 	private static final String LABEL_AM = "A.M.";
 	private static final String LABEL_PM = "P.M.";
 	
+	// CONSTANTS - Other
+	private static final int NOT_EDITING = -1;
+	
 	// DATA MEMBERS
 	private JPanel[][] panelGrid;
+	private WLOYSchedulePanelButton[][] buttonGrid;
+	private JPanel panelDataEntry;
+	private JTextField fieldDataEntry;
+	private JButton buttonDataEntry;
+	private int editingRow;
+	private int editingColumn;
 	
 	// METHODS
 	public WLOYSchedulePanel()
@@ -90,11 +143,26 @@ public class WLOYSchedulePanel extends JPanel {
 			}
 		
 		// Add buttons for each timeslot
+		buttonGrid = new WLOYSchedulePanelButton[GRID_ROWS - 1][GRID_COLUMNS - 1];
 		for(row = 1; row < GRID_ROWS; row++)
 			for(int col = 1; col < GRID_COLUMNS; col++)
 			{
-				
+				buttonGrid[row - 1][col - 1] = new WLOYSchedulePanelButton(BUTTON_EMPTY_TEXT, row - 1, col - 1);
+				buttonGrid[row - 1][col - 1].setBackground(BUTTON_EMPTY_COLOR);
+				buttonGrid[row - 1][col - 1].setForeground(BUTTON_EMPTY_TEXT_COLOR);
+				buttonGrid[row - 1][col - 1].addActionListener(this);
+				add(buttonGrid[row - 1][col - 1], row, col);
 			}
+		
+		// Initialize data entry panel
+		panelDataEntry = new JPanel(new GridLayout(1, 2));
+		fieldDataEntry = new JTextField();
+		buttonDataEntry = new JButton(BUTTON_DATA_ENTRY_TEXT);
+		buttonDataEntry.addActionListener(this);
+		panelDataEntry.add(fieldDataEntry);
+		panelDataEntry.add(buttonDataEntry);
+		editingRow = NOT_EDITING;
+		editingColumn = NOT_EDITING;
 	}
 	
 	/**
@@ -106,7 +174,58 @@ public class WLOYSchedulePanel extends JPanel {
 	 */
 	public void add(Component component, int row, int col)
 	{
-		panelGrid[row][col].removeAll();
+		//panelGrid[row][col].removeAll();
 		panelGrid[row][col].add(component);
+	}
+	
+	/**
+	 * interpret interaction with this panel
+	 */
+	public void actionPerformed(ActionEvent e)
+	{
+		Object source = e.getSource();
+		if(source == buttonDataEntry)
+			saveDataEntry();
+		else // Schedule button - display data entry panel
+		{
+			// If row is already being edited, close out editing panel in that area
+			if(editingRow != NOT_EDITING)
+				hideDataEntryPanel();
+			
+			WLOYSchedulePanelButton button = (WLOYSchedulePanelButton) source;
+			editingRow = button.getRow();
+			editingColumn = button.getColumn();
+			System.out.println(editingRow + "," + editingColumn); // debug
+			add(panelDataEntry, editingRow + 1, editingColumn + 1);
+		}
+	}
+	
+	/**
+	 * saves the data being entered into the button
+	 */
+	public void saveDataEntry()
+	{
+		if(fieldDataEntry.getText().equals(""))
+		{
+			buttonGrid[editingRow][editingColumn].setText(BUTTON_EMPTY_TEXT);
+			buttonGrid[editingRow][editingColumn].setBackground(BUTTON_EMPTY_COLOR);
+			buttonGrid[editingRow][editingColumn].setForeground(BUTTON_EMPTY_TEXT_COLOR);
+		}
+		else // New show information
+		{
+			buttonGrid[editingRow][editingColumn].setText(fieldDataEntry.getText());
+			buttonGrid[editingRow][editingColumn].setBackground(BUTTON_SHOW_COLOR);
+			buttonGrid[editingRow][editingColumn].setForeground(BUTTON_SHOW_TEXT_COLOR);
+		}
+		
+		hideDataEntryPanel();
+	}
+	
+	public void hideDataEntryPanel()
+	{
+		add(buttonGrid[editingRow][editingColumn], editingRow + 1, editingColumn + 1);
+		fieldDataEntry.setText("");
+		editingRow = NOT_EDITING;
+		editingColumn = NOT_EDITING;
 	}
 }
