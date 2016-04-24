@@ -12,14 +12,6 @@ import javax.swing.JTextField;
 
 public class WLOYSchedulePanel extends JPanel {
 	
-	// CONSTANTS - Buttons
-	private static final String BUTTON_DATA_ENTRY_TEXT = "SAVE";
-	private static final Color BUTTON_EMPTY_COLOR = Color.WHITE;
-	private static final String BUTTON_EMPTY_TEXT = "---";
-	private static final Color BUTTON_EMPTY_TEXT_COLOR = Color.BLACK;
-	private static final Color BUTTON_SHOW_COLOR = Color.BLACK;
-	private static final Color BUTTON_SHOW_TEXT_COLOR = Color.WHITE;
-	
 	// CONSTANTS - Grid Dimensions
 	private static final int GRID_ROWS = 25;
 	private static final int GRID_COLUMNS = 8;
@@ -36,17 +28,20 @@ public class WLOYSchedulePanel extends JPanel {
 	private static final String LABEL_AM = "A.M.";
 	private static final String LABEL_PM = "P.M.";
 	
-	// CONSTANTS - Other
-	private static final int NOT_EDITING = -1;
+	// CONSTANTS - XML
+	private static final String XML_DAY = "day";
+	private static final String[] XML_DAYS = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+	private static final String XML_DESCRIPTION = "description";
+	private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+	private static final String XML_HOUR = "hour";
+	private static final String XML_MINUTE = "minute";
+	private static final String XML_NAME = "name";
+	private static final String XML_ROOT = "root";
+	private static final String XML_SHOW = "show";
 	
 	// DATA MEMBERS
 	private JPanel[][] panelGrid;
 	private JTextField[][] fieldGrid;
-	private JPanel panelDataEntry;
-	private JTextField fieldDataEntry;
-	private JButton buttonDataEntry;
-	private int editingRow;
-	private int editingColumn;
 	
 	// METHODS
 	public WLOYSchedulePanel()
@@ -110,7 +105,7 @@ public class WLOYSchedulePanel extends JPanel {
 			}
 		
 		// Add textfields for each timeslot
-		fieldGrid = new JTextField[GRID_ROWS][GRID_COLUMNS];
+		fieldGrid = new JTextField[GRID_ROWS - 1][GRID_COLUMNS - 1];
 		for(row = 1; row < GRID_ROWS; row++)
 			for(int col = 1; col < GRID_COLUMNS; col++)
 			{
@@ -128,7 +123,77 @@ public class WLOYSchedulePanel extends JPanel {
 	 */
 	public void add(Component component, int row, int col)
 	{
-		//panelGrid[row][col].removeAll();
 		panelGrid[row][col].add(component);
+	}
+	
+	/**
+	 * converts the schedule stored in this panel to XML
+	 * 
+	 * @return an XML String of the schedule for file export
+	 */
+	public String convertScheduleToXML()
+	{
+		String xml = XML_HEADER + "\n";
+		xml += xmlElementOpen(XML_ROOT) + "\n";
+		
+		// Add items from each day column if item is not empty
+		for(int col = 0; col < XML_DAYS.length; col++)
+		{
+			String day = XML_DAYS[col];
+			for(int row = 0; row < fieldGrid.length; row++)
+				if((fieldGrid[row][col].getText() != null) && !fieldGrid[row][col].getText().equals(""))
+				{
+					String item = "\t" + xmlElementOpen(XML_SHOW) + "\n";
+					item += formatXMLRow(XML_NAME, fieldGrid[row][col].getText(), 2)+ "\n";
+					item += formatXMLRow(XML_DAY, day, 2) + "\n";
+					item += formatXMLRow(XML_HOUR, Integer.toString(row), 2) + "\n";
+					item += formatXMLRow(XML_MINUTE, "0", 2) + "\n"; // For now, minute is always 0
+					item += formatXMLRow(XML_DESCRIPTION, "", 2) + "\n"; // For now, descriptions are not available
+					item += "\t" + xmlElementClose(XML_SHOW) + "\n";
+					xml += item;
+				}
+		}
+		
+		xml += xmlElementClose(XML_ROOT) + "\n";
+		return xml;
+	}
+	
+	/**
+	 * formats an XML row
+	 * 
+	 * @param elementName name of the element
+	 * @param elementValue value of the element
+	 * @param numTabs tabs preceding the row
+	 * @return a formatted XML String for one element
+	 */
+	private String formatXMLRow(String elementName, String elementValue, int numTabs)
+	{
+		String row = "";
+		for(int i = 0; i < numTabs; i++)
+			row += "\t";
+		row += xmlElementOpen(elementName) + elementValue + xmlElementClose(elementName);
+		return row;
+	}
+	
+	/**
+	 * formats the opening of an XML element
+	 * 
+	 * @param elementName name of the element
+	 * @return a formatted XML element opening as a String
+	 */
+	private String xmlElementOpen(String elementName)
+	{
+		return "<" + elementName + ">";
+	}
+	
+	/**
+	 * formats the close of an XML element
+	 * 
+	 * @param elementName name of the element
+	 * @return a formatted XML element closing as a String
+	 */
+	private String xmlElementClose(String elementName)
+	{
+		return "</" + elementName + ">";
 	}
 }

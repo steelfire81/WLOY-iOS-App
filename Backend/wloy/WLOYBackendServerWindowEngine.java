@@ -28,6 +28,17 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e)
 	{
-		
+		Object source = e.getSource();
+		if(source == parent.buttonSaveSchedule)
+			saveSchedule();
+	}
+	
+	/**
+	 * export the schedule to a file
+	 */
+	private void saveSchedule()
+	{
+		// DEBUG - print for now
+		System.out.println(parent.panelScheduleSubpanel.convertScheduleToXML());
 	}
 }
