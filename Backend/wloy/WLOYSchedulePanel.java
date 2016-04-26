@@ -1,16 +1,23 @@
 package wloy;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 public class WLOYSchedulePanel extends JPanel {
+	
+	// CONSTANTS - Error Messages
+	private static final String ERR_DAY_FORMAT = "Improperly formatted day";
 	
 	// CONSTANTS - Grid Dimensions
 	private static final int GRID_ROWS = 25;
@@ -195,5 +202,50 @@ public class WLOYSchedulePanel extends JPanel {
 	private String xmlElementClose(String elementName)
 	{
 		return "</" + elementName + ">";
+	}
+	
+	/**
+	 * opens a schedule from an XML file (as a String)
+	 * 
+	 * @param xml String containing an XML file's contents
+	 */
+	public void loadScheduleFromXML(String xml)
+	{
+		try
+		{
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			ByteArrayInputStream input = new ByteArrayInputStream(xml.getBytes());
+			Document doc = builder.parse(input);
+			
+			NodeList showList = doc.getElementsByTagName(XML_SHOW);
+			for(int i = 0; i < showList.getLength(); i++)
+			{
+				Element e = (Element) showList.item(i);
+				String name = e.getElementsByTagName(XML_NAME).item(0).getTextContent();
+				String day = e.getElementsByTagName(XML_DAY).item(0).getTextContent();
+				int hour = Integer.parseInt(e.getElementsByTagName(XML_HOUR).item(0).getTextContent());
+				int minute = Integer.parseInt(e.getElementsByTagName(XML_MINUTE).item(0).getTextContent());
+				String description = e.getElementsByTagName(XML_DESCRIPTION).item(0).getTextContent();
+				
+				// Add this show to the grid
+				int dayNumber = -1;
+				for(int j = 0; j < XML_DAYS.length; j++)
+					if(day.equals(XML_DAYS[j]))
+						dayNumber = j;
+				if(dayNumber == -1) // Ensure day is properly formatted
+					throw new IOException(ERR_DAY_FORMAT);
+				
+				fieldGrid[hour][dayNumber].setText(name);
+			}
+		}
+		catch(NumberFormatException nfe)
+		{
+			
+		}
+		catch(Exception e) // Something went wrong with the parser
+		{
+			
+		}
 	}
 }
