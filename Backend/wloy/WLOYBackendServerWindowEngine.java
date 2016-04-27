@@ -2,8 +2,12 @@ package wloy;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 
 public class WLOYBackendServerWindowEngine implements ActionListener {
 
@@ -31,6 +35,39 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 		Object source = e.getSource();
 		if(source == parent.buttonSaveSchedule)
 			saveSchedule();
+		else if(source == parent.buttonLoadSchedule)
+			loadSchedule();
+	}
+	
+	/**
+	 * load an existing XML schedule file into the schedule panel
+	 */
+	private void loadSchedule()
+	{
+		// TODO: Ask to save current schedule
+		
+		JFileChooser selector = new JFileChooser();
+		selector.setCurrentDirectory(null);
+		int result = selector.showOpenDialog(parent.frame);
+		
+		if(result == JFileChooser.APPROVE_OPTION)
+		{
+			File loadFile = selector.getSelectedFile();
+			
+			try
+			{
+				Scanner fileScan = new Scanner(loadFile);
+				String xml = "";
+				while(fileScan.hasNextLine())
+					xml += fileScan.nextLine() + "\n";
+				fileScan.close();
+				parent.panelScheduleSubpanel.loadScheduleFromXML(xml);
+			}
+			catch(IOException ioe)
+			{
+				
+			}
+		}
 	}
 	
 	/**

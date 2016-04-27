@@ -18,6 +18,7 @@ public class WLOYSchedulePanel extends JPanel {
 	
 	// CONSTANTS - Error Messages
 	private static final String ERR_DAY_FORMAT = "Improperly formatted day";
+	private static final String ERR_XML_LOAD = "Could not load from XML data";
 	
 	// CONSTANTS - Grid Dimensions
 	private static final int GRID_ROWS = 25;
@@ -209,7 +210,7 @@ public class WLOYSchedulePanel extends JPanel {
 	 * 
 	 * @param xml String containing an XML file's contents
 	 */
-	public void loadScheduleFromXML(String xml)
+	public void loadScheduleFromXML(String xml) throws IOException
 	{
 		try
 		{
@@ -225,6 +226,7 @@ public class WLOYSchedulePanel extends JPanel {
 				String name = e.getElementsByTagName(XML_NAME).item(0).getTextContent();
 				String day = e.getElementsByTagName(XML_DAY).item(0).getTextContent();
 				int hour = Integer.parseInt(e.getElementsByTagName(XML_HOUR).item(0).getTextContent());
+				// As of right now, minute and description do nothing
 				int minute = Integer.parseInt(e.getElementsByTagName(XML_MINUTE).item(0).getTextContent());
 				String description = e.getElementsByTagName(XML_DESCRIPTION).item(0).getTextContent();
 				
@@ -241,11 +243,15 @@ public class WLOYSchedulePanel extends JPanel {
 		}
 		catch(NumberFormatException nfe)
 		{
-			
+			throw new IOException(ERR_XML_LOAD);
+		}
+		catch(IOException ioe)
+		{
+			throw ioe;
 		}
 		catch(Exception e) // Something went wrong with the parser
 		{
-			
+			throw new IOException(ERR_XML_LOAD);
 		}
 	}
 }

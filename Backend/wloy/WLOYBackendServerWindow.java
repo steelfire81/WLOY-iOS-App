@@ -14,6 +14,7 @@ public class WLOYBackendServerWindow {
 	
 	// CONSTANTS - Button Text
 	private static final String BUTTON_EXPORT_DATA_TEXT = "EXPORT";
+	private static final String BUTTON_LOAD_SCHEDULE_TEXT = "LOAD";
 	private static final String BUTTON_SAVE_SCHEDULE_TEXT = "SAVE";
 	
 	// CONSTANTS - Label Text
@@ -43,6 +44,7 @@ public class WLOYBackendServerWindow {
 	
 	// WINDOW ELEMENTS
 	JButton buttonExportData;
+	JButton buttonLoadSchedule;
 	JButton buttonSaveSchedule;
 	JFrame frame;
 	JPanel panelDJData;
@@ -65,10 +67,15 @@ public class WLOYBackendServerWindow {
 		// Initialize schedule panel
 		panelSchedule = new JPanel(new BorderLayout());
 		panelScheduleSubpanel = new WLOYSchedulePanel();
+		JPanel panelScheduleButtons = new JPanel(new GridLayout(1, 2));
+		buttonLoadSchedule = new JButton(BUTTON_LOAD_SCHEDULE_TEXT);
+		buttonLoadSchedule.addActionListener(engine);
 		buttonSaveSchedule = new JButton(BUTTON_SAVE_SCHEDULE_TEXT);
 		buttonSaveSchedule.addActionListener(engine);
+		panelScheduleButtons.add(buttonLoadSchedule);
+		panelScheduleButtons.add(buttonSaveSchedule);
 		panelSchedule.add(panelScheduleSubpanel, BorderLayout.CENTER);
-		panelSchedule.add(buttonSaveSchedule, BorderLayout.SOUTH);
+		panelSchedule.add(panelScheduleButtons, BorderLayout.SOUTH);
 		
 		// Initialize requests panel
 		JPanel panelRequests = new JPanel(new BorderLayout());
