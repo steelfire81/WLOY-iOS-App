@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 import javax.swing.JButton;
@@ -65,7 +66,7 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 			}
 			catch(IOException ioe)
 			{
-				
+				// TODO: Handle IOException
 			}
 		}
 	}
@@ -75,7 +76,24 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 	 */
 	private void saveSchedule()
 	{
-		// DEBUG - print for now
-		System.out.println(parent.panelScheduleSubpanel.convertScheduleToXML());
+		JFileChooser selector = new JFileChooser();
+		selector.setCurrentDirectory(null);
+		int result = selector.showSaveDialog(parent.frame);
+		
+		if(result == JFileChooser.APPROVE_OPTION)
+		{
+			File saveFile = selector.getSelectedFile();
+			
+			try
+			{
+				PrintWriter fileWriter = new PrintWriter(saveFile);
+				fileWriter.println(parent.panelScheduleSubpanel.convertScheduleToXML());
+				fileWriter.close();
+			}
+			catch(IOException ioe)
+			{
+				// TODO: Handle IOException
+			}
+		}
 	}
 }

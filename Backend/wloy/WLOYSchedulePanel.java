@@ -212,6 +212,12 @@ public class WLOYSchedulePanel extends JPanel {
 	 */
 	public void loadScheduleFromXML(String xml) throws IOException
 	{
+		// Wipe current schedule
+		for(int row = 0; row < fieldGrid.length; row++)
+			for(int col = 0; col < fieldGrid[row].length; col++)
+				fieldGrid[row][col].setText("");
+		
+		// Load schedule from XML
 		try
 		{
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
