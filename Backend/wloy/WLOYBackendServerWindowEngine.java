@@ -6,14 +6,19 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 public class WLOYBackendServerWindowEngine implements ActionListener {
 
+	// CONSTANTS
+	private static final String ERR_FILE_EXPORT = "ERROR: Could not export data files";
+	private static final String ERR_FILE_LOAD = "ERROR: Could not load from file";
+	private static final String ERR_FILE_SAVE = "ERROR: Could not save to file";
+	
 	// DATA MEMBERS
 	private WLOYBackendServerWindow parent;
+	private WLOYBackendServer server;
 	
 	// METHODS
 	/**
@@ -28,6 +33,7 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 		// Start a server
 		WLOYBackendServerMainThread serverThread = new WLOYBackendServerMainThread(this);
 		serverThread.start();
+		server = serverThread.getServer();
 	}
 	
 	/**
@@ -46,6 +52,8 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 			parent.switchToSchedule();
 		else if(source == parent.buttonSwitchToStats)
 			parent.switchToStats();
+		else if(source == parent.buttonExportData)
+			exportData();
 	}
 	
 	/**
@@ -53,8 +61,6 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 	 */
 	private void loadSchedule()
 	{
-		// TODO: Ask to save current schedule
-		
 		JFileChooser selector = new JFileChooser();
 		selector.setCurrentDirectory(null);
 		int result = selector.showOpenDialog(parent.frame);
@@ -74,7 +80,7 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 			}
 			catch(IOException ioe)
 			{
-				// TODO: Handle IOException
+				JOptionPane.showMessageDialog(null, ERR_FILE_LOAD);
 			}
 		}
 	}
@@ -100,7 +106,7 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 			}
 			catch(IOException ioe)
 			{
-				// TODO: Handle IOException
+				JOptionPane.showMessageDialog(null, ERR_FILE_SAVE);
 			}
 		}
 	}
@@ -123,5 +129,20 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 	public void requestReceived(WLOYRequest request)
 	{
 		parent.tableRequests.addRequest(request);
+	}
+	
+	/**
+	 * export associated server's data to files
+	 */
+	private void exportData()
+	{
+		try
+		{
+			server.exportData();
+		}
+		catch(IOException ioe)
+		{
+			JOptionPane.showMessageDialog(null, ERR_FILE_EXPORT);
+		}
 	}
 }

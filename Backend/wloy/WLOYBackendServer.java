@@ -58,7 +58,6 @@ public class WLOYBackendServer {
 			WLOYBackendServerThread thread = new WLOYBackendServerThread(socket.accept(), this);
 			System.out.println("Connection from " + thread.getAddress());
 			thread.start();
-			exportData(); // debug for now
 		}
 		socket.close();
 		
@@ -76,7 +75,7 @@ public class WLOYBackendServer {
 	/**
 	 * saves listener and feedback data as .csv files
 	 */
-	private void exportData() throws IOException
+	public void exportData() throws IOException
 	{
 		String connectionFilename = getDatedFilename(FILENAME_CONNECTION);
 		String feedbackFilename = getDatedFilename(FILENAME_FEEDBACK);

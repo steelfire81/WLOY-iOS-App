@@ -4,12 +4,10 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
