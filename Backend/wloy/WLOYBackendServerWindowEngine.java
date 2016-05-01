@@ -24,6 +24,10 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 	public WLOYBackendServerWindowEngine(WLOYBackendServerWindow p)
 	{
 		parent = p;
+		
+		// Start a server
+		WLOYBackendServerMainThread serverThread = new WLOYBackendServerMainThread(this);
+		serverThread.start();
 	}
 	
 	/**
@@ -99,5 +103,25 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 				// TODO: Handle IOException
 			}
 		}
+	}
+	
+	/**
+	 * add feedback to the feedback table
+	 * 
+	 * @param feedback newly received feedback
+	 */
+	public void feedbackReceived(WLOYFeedback feedback)
+	{
+		parent.tableFeedback.addFeedback(feedback);
+	}
+	
+	/**
+	 * add request to the request table
+	 * 
+	 * @param request newly received request
+	 */
+	public void requestReceived(WLOYRequest request)
+	{
+		parent.tableRequests.addRequest(request);
 	}
 }

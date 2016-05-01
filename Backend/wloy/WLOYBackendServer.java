@@ -12,15 +12,10 @@ import java.util.Hashtable;
 public class WLOYBackendServer {
 
 	// CONSTANTS - Ports
-	private static final int PORT_DEFAULT = 4444;
-	private static final int PORT_MIN = 1024;
-	private static final int PORT_MAX = 49151;
+	public static final int PORT = 4444;
 	
 	// CONSTANTS - Error Messages
-	private static final String ERR_ARGS = "USAGE: WLOYBackendServer [port #]";
 	private static final String ERR_FILE_OUTPUT = "ERROR: Could not output data files";
-	private static final String ERR_PORT_LOW = "ERROR: Minimum port # is " + PORT_MIN;
-	private static final String ERR_PORT_HIGH = "ERROR: Maximum port # is " + PORT_MAX;
 	
 	// CONSTANTS - Filenames
 	private static final String FILENAME_CONNECTION = "connections-";
@@ -32,6 +27,7 @@ public class WLOYBackendServer {
 	private ArrayList<WLOYListener> finishedListeners;
 	private ArrayList<WLOYRequest> requests;
 	private ArrayList<WLOYFeedback> feedback;
+	private WLOYBackendServerWindowEngine windowEngine;
 	
 	// METHODS
 	/**
@@ -40,8 +36,10 @@ public class WLOYBackendServer {
 	 * @param port port on which to listen for connections
 	 * @throws IOException thrown if socket could not be opened
 	 */
-	private WLOYBackendServer(int port) throws IOException
+	public WLOYBackendServer(int port, WLOYBackendServerWindowEngine we) throws IOException
 	{
+		windowEngine = we;
+		
 		// Initialize data stores
 		activeListeners = new Hashtable<Integer, WLOYListener>();
 		finishedListeners = new ArrayList<WLOYListener>();
@@ -186,6 +184,7 @@ public class WLOYBackendServer {
 	{
 		WLOYFeedback fb = new WLOYFeedback(positive, songTitle, artist, show, dj);
 		feedback.add(fb);
+		windowEngine.feedbackReceived(fb);
 		System.out.println("Received new feedback: " + fb); // DEBUG
 	}
 	
@@ -199,50 +198,7 @@ public class WLOYBackendServer {
 	{
 		WLOYRequest request = new WLOYRequest(songTitle, artist);
 		requests.add(request);
+		windowEngine.requestReceived(request);
 		System.out.println("Received new request: " + request); // DEBUG
-	}
-	
-	/**
-	 * initializes a server
-	 * 
-	 * @param args may contain a port number as the only argument, or may be empty
-	 * @throws IOException thrown if server could not be initialized
-	 */
-	public static void main(String[] args) throws IOException
-	{
-		if(args.length == 0)
-		{
-			System.out.println("No port specified; using port " + PORT_DEFAULT);
-			new WLOYBackendServer(PORT_DEFAULT);
-		}
-		else if(args.length == 1)
-		{
-			try
-			{
-				int port = Integer.parseInt(args[0]);
-				if(port < PORT_MIN)
-				{
-					System.err.println(ERR_PORT_LOW);
-					System.exit(1);
-				}
-				else if(port > PORT_MAX)
-				{
-					System.err.println(ERR_PORT_HIGH);
-					System.exit(1);
-				}
-				else
-					new WLOYBackendServer(port);
-			}
-			catch(NumberFormatException nfe)
-			{
-				System.err.println(ERR_ARGS);
-				System.exit(1);
-			}
-		}
-		else // Improper arguments
-		{
-			System.err.println(ERR_ARGS);
-			System.exit(1);
-		}
 	}
 }

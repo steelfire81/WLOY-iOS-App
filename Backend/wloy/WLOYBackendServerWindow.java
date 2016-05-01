@@ -136,10 +136,6 @@ public class WLOYBackendServerWindow {
 	// main - used only for debugging right now
 	public static void main(String[] args)
 	{
-		WLOYBackendServerWindow window = new WLOYBackendServerWindow();
-		window.tableRequests.addRequest(new WLOYRequest("No Surprises", "Radiohead"));
-		window.tableRequests.addRequest(new WLOYRequest("Slow Show", "The National"));
-		window.tableFeedback.addFeedback(new WLOYFeedback(true, "No Surprises", "Radiohead", "The Radiohead Hour", "DJ Radiohead"));
-		window.tableFeedback.addFeedback(new WLOYFeedback(false, "We Built This City", "Starship", "The Bad Song Show", "DJ Bad Taste"));
+		new WLOYBackendServerWindow();
 	}
 }
