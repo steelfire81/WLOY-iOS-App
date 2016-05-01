@@ -38,6 +38,10 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 			saveSchedule();
 		else if(source == parent.buttonLoadSchedule)
 			loadSchedule();
+		else if(source == parent.buttonSwitchToSchedule)
+			parent.switchToSchedule();
+		else if(source == parent.buttonSwitchToStats)
+			parent.switchToStats();
 	}
 	
 	/**

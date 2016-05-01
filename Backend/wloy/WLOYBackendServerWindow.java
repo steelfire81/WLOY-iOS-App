@@ -16,36 +16,26 @@ public class WLOYBackendServerWindow {
 	private static final String BUTTON_EXPORT_DATA_TEXT = "EXPORT";
 	private static final String BUTTON_LOAD_SCHEDULE_TEXT = "LOAD";
 	private static final String BUTTON_SAVE_SCHEDULE_TEXT = "SAVE";
+	private static final String BUTTON_TO_SCHEDULE_TEXT = "SWITCH TO SCHEDULE";
+	private static final String BUTTON_TO_STATS_TEXT = "SWITCH TO STATS";
 	
 	// CONSTANTS - Label Text
 	private static final String LABEL_FEEDBACK = "FEEDBACK";
 	private static final String LABEL_REQUESTS = "REQUESTS";
 	
-	// CONSTANTS - Schedule
-	private static final int SCHEDULE_WIDTH = 8;
-	private static final int SCHEDULE_HEIGHT = 5;
-	private static final String SCHEDULE_LABEL_HOUR = "HOUR";
-	private static final String SCHEDULE_LABEL_SUNDAY = "SUNDAY";
-	private static final String SCHEDULE_LABEL_MONDAY = "MONDAY";
-	private static final String SCHEDULE_LABEL_TUESDAY = "TUESDAY";
-	private static final String SCHEDULE_LABEL_WEDNESDAY = "WEDNESDAY";
-	private static final String SCHEDULE_LABEL_THURSDAY = "THURSDAY";
-	private static final String SCHEDULE_LABEL_FRIDAY = "FRIDAY";
-	private static final String SCHEDULE_LABEL_SATURDAY = "SATURDAY";
-	private static final String SCHEDULE_LABEL_AM = "A.M.";
-	private static final String SCHEDULE_LABEL_PM = "P.M.";
-	
 	// CONSTANTS - Window Data
 	private static final String WINDOW_NAME = "WLOY Backend Server";
 	private static final int WINDOW_WIDTH_SCHEDULE = 1200;
 	private static final int WINDOW_HEIGHT_SCHEDULE = 1000;
-	private static final int WINDOW_WIDTH_DJ = 800;
-	private static final int WINDOW_HEIGHT_DJ = 300;
+	private static final int WINDOW_WIDTH_DJ = 1200;
+	private static final int WINDOW_HEIGHT_DJ = 400;
 	
 	// WINDOW ELEMENTS
 	JButton buttonExportData;
 	JButton buttonLoadSchedule;
 	JButton buttonSaveSchedule;
+	JButton buttonSwitchToStats;
+	JButton buttonSwitchToSchedule;
 	JFrame frame;
 	JPanel panelDJData;
 	JPanel panelSchedule;
@@ -72,10 +62,13 @@ public class WLOYBackendServerWindow {
 		buttonLoadSchedule.addActionListener(engine);
 		buttonSaveSchedule = new JButton(BUTTON_SAVE_SCHEDULE_TEXT);
 		buttonSaveSchedule.addActionListener(engine);
+		buttonSwitchToStats = new JButton(BUTTON_TO_STATS_TEXT);
+		buttonSwitchToStats.addActionListener(engine);
 		panelScheduleButtons.add(buttonLoadSchedule);
 		panelScheduleButtons.add(buttonSaveSchedule);
 		panelSchedule.add(panelScheduleSubpanel, BorderLayout.CENTER);
 		panelSchedule.add(panelScheduleButtons, BorderLayout.SOUTH);
+		panelSchedule.add(buttonSwitchToStats, BorderLayout.NORTH);
 		
 		// Initialize requests panel
 		JPanel panelRequests = new JPanel(new BorderLayout());
@@ -101,17 +94,42 @@ public class WLOYBackendServerWindow {
 		panelDJData = new JPanel(new BorderLayout());
 		buttonExportData = new JButton(BUTTON_EXPORT_DATA_TEXT);
 		buttonExportData.addActionListener(engine);
+		buttonSwitchToSchedule = new JButton(BUTTON_TO_SCHEDULE_TEXT);
+		buttonSwitchToSchedule.addActionListener(engine);
 		JPanel panelDJDataSubpanel = new JPanel(new GridLayout(1, 2));
 		panelDJDataSubpanel.add(panelRequests);
 		panelDJDataSubpanel.add(panelFeedback);
-		panelDJData.add(buttonExportData, BorderLayout.NORTH);
+		panelDJData.add(buttonExportData, BorderLayout.SOUTH);
 		panelDJData.add(panelDJDataSubpanel, BorderLayout.CENTER);
+		panelDJData.add(buttonSwitchToSchedule, BorderLayout.NORTH);
 		
 		// Make this all visible
 		frame = new JFrame(WINDOW_NAME);
 		frame.setContentPane(panelSchedule);
 		frame.setSize(WINDOW_WIDTH_SCHEDULE, WINDOW_HEIGHT_SCHEDULE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	}
+	
+	/**
+	 * change the view to the schedule
+	 */
+	public void switchToSchedule()
+	{
+		frame.setVisible(false);
+		frame.setContentPane(panelSchedule);
+		frame.setSize(WINDOW_WIDTH_SCHEDULE, WINDOW_HEIGHT_SCHEDULE);
+		frame.setVisible(true);
+	}
+	
+	/**
+	 * change the view to DJ stats
+	 */
+	public void switchToStats()
+	{
+		frame.setVisible(false);
+		frame.setContentPane(panelDJData);
+		frame.setSize(WINDOW_WIDTH_DJ, WINDOW_HEIGHT_DJ);
 		frame.setVisible(true);
 	}
 	
