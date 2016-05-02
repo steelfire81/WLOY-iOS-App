@@ -1,6 +1,7 @@
 package wloy;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
@@ -20,8 +21,10 @@ public class WLOYBackendServerThread extends Thread {
 	private static final String HEADER_CONNECTION = "CONNECTION";
 	private static final String HEADER_FEEDBACK = "FEEDBACK";
 	private static final String HEADER_REQUEST = "REQUEST";
+	private static final String HEADER_SCHEDULE_REQUEST = "SCHEDULE";
 	
 	// CONSTANTS - Other
+	private static final String CHARACTER_ENCODING = "UTF-8";
 	private static final String THREAD_NAME = "WLOY App Listener Thread";
 	
 	// DATA MEMBERS
@@ -82,6 +85,11 @@ public class WLOYBackendServerThread extends Thread {
 			 * [Connection time (Int)]
 			 * [Song Title (String)]
 			 * [Artist (String)]
+			 * 
+			 * Schedule Request:
+			 * HEADER_SCHEDULE_REQUEST
+			 * [Identifier (Int)]
+			 * [Connection time (Int)]
 			 */
 			Scanner messageScan = new Scanner(message);
 			String header = messageScan.nextLine();
@@ -108,6 +116,9 @@ public class WLOYBackendServerThread extends Thread {
 						String requestTitle = messageScan.nextLine();
 						String requestArtist = messageScan.nextLine();
 						parent.requestMessageReceived(requestTitle, requestArtist);
+						break;
+					case HEADER_SCHEDULE_REQUEST:
+						sendSchedule();
 						break;
 					default:
 						System.err.println(ERR_INVALID_MESSAGE);
@@ -138,5 +149,23 @@ public class WLOYBackendServerThread extends Thread {
 	public InetAddress getAddress()
 	{
 		return socket.getInetAddress();
+	}
+	
+	/**
+	 * transmit the XML schedule to the other end of this socket
+	 */
+	private void sendSchedule()
+	{
+		try
+		{
+			DataOutputStream output = new DataOutputStream(socket.getOutputStream());
+			output.write(parent.scheduleRequestMessageReceived().getBytes(CHARACTER_ENCODING));
+			output.flush();
+		}
+		catch(IOException ioe)
+		{
+			System.err.println("ERROR: Problem sending schedule to " + getAddress());
+			ioe.printStackTrace();
+		}
 	}
 }

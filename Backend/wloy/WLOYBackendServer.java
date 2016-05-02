@@ -188,7 +188,7 @@ public class WLOYBackendServer {
 	}
 	
 	/**
-	 * handle's a client's message requesting a song to be played
+	 * handles a client's message requesting a song to be played
 	 * 
 	 * @param songTitle
 	 * @param artist
@@ -199,5 +199,15 @@ public class WLOYBackendServer {
 		requests.add(request);
 		windowEngine.requestReceived(request);
 		System.out.println("Received new request: " + request); // DEBUG
+	}
+	
+	/**
+	 * handles a client's message requesting the schedule data
+	 * 
+	 * @return the GUI's schedule panel data as an XML String
+	 */
+	public String scheduleRequestMessageReceived()
+	{
+		return windowEngine.retrieveScheduleXMLData();
 	}
 }

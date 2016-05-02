@@ -145,4 +145,14 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 			JOptionPane.showMessageDialog(null, ERR_FILE_EXPORT);
 		}
 	}
+	
+	/**
+	 * returns the window's schedule subpanel as XML data
+	 * 
+	 * @return the window's schedule subpanel as XML data
+	 */
+	public String retrieveScheduleXMLData()
+	{
+		return parent.panelScheduleSubpanel.convertScheduleToXML();
+	}
 }
