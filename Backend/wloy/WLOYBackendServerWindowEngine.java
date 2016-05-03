@@ -15,9 +15,11 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 	private static final String ERR_FILE_EXPORT = "ERROR: Could not export data files";
 	private static final String ERR_FILE_LOAD = "ERROR: Could not load from file";
 	private static final String ERR_FILE_SAVE = "ERROR: Could not save to file";
+	private static final String ERR_SERVER_NOT_FOUND = "ERROR: Could not find server";
 	
 	// DATA MEMBERS
 	private WLOYBackendServerWindow parent;
+	private WLOYBackendServerMainThread serverThread;
 	private WLOYBackendServer server;
 	
 	// METHODS
@@ -31,9 +33,8 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 		parent = p;
 		
 		// Start a server
-		WLOYBackendServerMainThread serverThread = new WLOYBackendServerMainThread(this);
+		serverThread = new WLOYBackendServerMainThread(this);
 		serverThread.start();
-		server = serverThread.getServer();
 	}
 	
 	/**
@@ -144,6 +145,10 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 		{
 			JOptionPane.showMessageDialog(null, ERR_FILE_EXPORT);
 		}
+		catch(NullPointerException npe)
+		{
+			JOptionPane.showMessageDialog(null, ERR_SERVER_NOT_FOUND);
+		}
 	}
 	
 	/**
@@ -154,5 +159,15 @@ public class WLOYBackendServerWindowEngine implements ActionListener {
 	public String retrieveScheduleXMLData()
 	{
 		return parent.panelScheduleSubpanel.convertScheduleToXML();
+	}
+	
+	/**
+	 * tells this window engine which server it is operating
+	 * 
+	 * @param s server this window engine is operating
+	 */
+	public void setServer(WLOYBackendServer s)
+	{
+		server = s;
 	}
 }

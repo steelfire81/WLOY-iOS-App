@@ -39,6 +39,7 @@ public class WLOYBackendServer {
 	public WLOYBackendServer(int port, WLOYBackendServerWindowEngine we) throws IOException
 	{
 		windowEngine = we;
+		windowEngine.setServer(this);
 		
 		// Initialize data stores
 		activeListeners = new Hashtable<Integer, WLOYListener>();

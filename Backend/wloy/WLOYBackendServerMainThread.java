@@ -9,7 +9,6 @@ public class WLOYBackendServerMainThread extends Thread {
 	
 	// DATA MEMBERS
 	private WLOYBackendServerWindowEngine windowEngine;
-	private WLOYBackendServer server;
 	
 	// METHODS
 	/**
@@ -30,22 +29,12 @@ public class WLOYBackendServerMainThread extends Thread {
 	{
 		try
 		{
-			server = new WLOYBackendServer(WLOYBackendServer.PORT, windowEngine);
+			new WLOYBackendServer(WLOYBackendServer.PORT, windowEngine);
 		}
 		catch(IOException ioe)
 		{
 			System.err.println(ERR_SERVER_OPEN);
 			System.exit(1);
 		}
-	}
-	
-	/**
-	 * returns the server this thread contains
-	 * 
-	 * @return the server this thread contains
-	 */
-	public WLOYBackendServer getServer()
-	{
-		return server;
 	}
 }
