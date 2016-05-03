@@ -12,15 +12,17 @@ import Foundation
 class BackendConnector: NSObject {
     
     // CONSTANTS
-    static let ADDRESS = "belle"
+    static let ADDRESS = "lucy"
     static let ERR_CONNECTION = "ERROR: Could not send following message to backend server"
     static let FEEDBACK_POSITIVE = "POSITIVE"
     static let FEEDBACK_NEGATIVE = "NEGATIVE"
     static let HEADER_CONNECTION = "CONNECTION"
     static let HEADER_FEEDBACK = "FEEDBACK"
     static let HEADER_REQUEST = "REQUEST"
+    static let HEADER_SCHEDULE_REQUEST = "SCHEDULE"
     static let MSG_NEW_STREAM = "Opened new output stream"
     static let PORT = 4444
+    static let READ_BUFFSIZE = 50
     static let TIMER_INTERVAL = 60.0 // time in between server update sends (in seconds)
     
     // DATA MEMBERS
@@ -31,6 +33,11 @@ class BackendConnector: NSObject {
     static var timer:NSTimer!
     
     // METHODS
+    // generateScheduleRequest - create a message requesting the backend server's schedule
+    static func generateScheduleRequest() -> String {
+        return HEADER_SCHEDULE_REQUEST + "\n" + String(id) + "\n" + String(timeConnected) + "\n"
+    }
+    
     // sendConnectionMessage - send a message to the server giving time connected
     static func sendConnectionMessage() -> Bool {
         let message = HEADER_CONNECTION + "\n" + String(id) + "\n" + String(timeConnected) + "\n"
@@ -79,9 +86,9 @@ class BackendConnector: NSObject {
             outputStream.open()
         }
         
+        // Send the message
         let buffer:[UInt8] = Array(message.utf8)
         let result = outputStream.write(buffer, maxLength:buffer.count)
-        // testing this
         outputStream.close()
         outputStream = nil
         

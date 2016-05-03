@@ -44,11 +44,6 @@ class ScheduleViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    // getCurrentTime - return the current time and date as NSDateComponents
-    func getCurrentTime() -> NSDateComponents {
-        return NSCalendar.currentCalendar().components([NSCalendarUnit.Year, NSCalendarUnit.Month, NSCalendarUnit.Day, NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Weekday], fromDate:NSDate())
-    }
-    
     // displayNotification - show a pop-up message with the given text
     func displayNotification(message:String, title:String) {
         let notificationController = UIAlertController(title:title, message:message, preferredStyle:UIAlertControllerStyle.Alert)

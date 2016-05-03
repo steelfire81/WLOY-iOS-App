@@ -16,11 +16,11 @@ class BackendConnectorDelegate: NSObject, NSStreamDelegate {
         if((BackendConnector.outputStream != nil) && (aStream == BackendConnector.outputStream)) {
             switch eventCode {
             case NSStreamEvent.ErrorOccurred:
-                NSLog("ERROR: Could not open stream")
+                NSLog("ERROR: Could not open output stream")
             case NSStreamEvent.OpenCompleted:
-                NSLog("Opened stream successfully")
+                NSLog("Opened output stream successfully")
             case NSStreamEvent.HasSpaceAvailable:
-                NSLog("Stream has space available to write")
+                NSLog("Output stream has space available to write")
             default:
                 break
             }

@@ -104,7 +104,9 @@ class WLOYScheduleParserDelegate: NSObject, NSXMLParserDelegate {
     func parser(_ parser:NSXMLParser, didEndElement elementName:String, namespaceURI namespaceURI:String?, qualifiedName qName:String?) {
         if(elementName == XML_SHOW) {
             // Finish show and add show to appropriate day array
-            let newShow = Show(n:currentShowName, h:Int(currentShowStartHour)!, m:Int(currentShowStartMinute)!, d:currentShowDescription)
+            let hour = Int(currentShowStartHour)
+            let minute = Int(currentShowStartMinute)
+            let newShow = Show(n:currentShowName, h:hour!, m:minute!, d:currentShowDescription)
             
             if(currentShowDay == XML_SUNDAY) {
                 showsSunday.append(newShow)
@@ -149,7 +151,7 @@ class WLOYScheduleParserDelegate: NSObject, NSXMLParserDelegate {
         } else if(parsingHour) {
             currentShowStartHour = currentShowStartHour + string
         } else if(parsingMinute) {
-            currentShowStartHour = currentShowStartHour + string
+            currentShowStartMinute = currentShowStartMinute + string
         } else if(parsingDescription) {
             currentShowDescription = currentShowDescription + string
         }
