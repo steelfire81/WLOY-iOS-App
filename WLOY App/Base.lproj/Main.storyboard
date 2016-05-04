@@ -88,7 +88,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.76805830001831055" green="0.92170530557632446" blue="0.8391188383102417" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="r4f-pN-JWv" firstAttribute="top" secondItem="Frf-bi-oef" secondAttribute="bottom" constant="15" id="0bi-Es-Ipo"/>
+                            <constraint firstItem="r4f-pN-JWv" firstAttribute="top" secondItem="Frf-bi-oef" secondAttribute="bottom" constant="15" id="0bi-Es-Ipo" userLabel="DISLIKE.top = LIKE.bottom + 10"/>
                             <constraint firstItem="bw0-5g-wwi" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="2X9-Vo-vsz"/>
                             <constraint firstItem="HYG-dN-ShT" firstAttribute="top" secondItem="r4f-pN-JWv" secondAttribute="bottom" constant="15" id="ATK-Ec-c1F"/>
                             <constraint firstItem="JWR-ZB-tOd" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="Cgg-Oy-QOc"/>
@@ -100,14 +100,14 @@
                             <constraint firstItem="U9M-FJ-sDv" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="20" id="aqc-fT-h3K"/>
                             <constraint firstItem="r4f-pN-JWv" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="atv-Eh-J10"/>
                             <constraint firstItem="Uzv-vb-zbp" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="auA-wF-257"/>
+                            <constraint firstItem="bw0-5g-wwi" firstAttribute="top" secondItem="O6l-9Z-sRV" secondAttribute="bottom" constant="75" id="cQF-xx-2tz"/>
                             <constraint firstItem="JWR-ZB-tOd" firstAttribute="top" secondItem="HYG-dN-ShT" secondAttribute="bottom" constant="8" id="eh6-zQ-LNY"/>
                             <constraint firstItem="Uzv-vb-zbp" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="21" id="q3X-p2-gkW"/>
-                            <constraint firstItem="bw0-5g-wwi" firstAttribute="top" secondItem="O6l-9Z-sRV" secondAttribute="bottom" constant="98" id="q3n-Be-iyc"/>
                             <constraint firstItem="HYG-dN-ShT" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="w7G-9l-fBD"/>
                             <constraint firstItem="U9M-FJ-sDv" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" constant="-20" id="wJc-sd-n0k"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Now Playing" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" image="nowplaying" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="currentArtistLabel" destination="JWR-ZB-tOd" id="E8t-O4-ktM"/>
                         <outlet property="currentDJLabel" destination="O6l-9Z-sRV" id="lvK-lD-i7j"/>
@@ -154,7 +154,7 @@
                             <constraint firstItem="5Cg-tn-6BS" firstAttribute="trailing" secondItem="d6N-t2-rtC" secondAttribute="trailingMargin" constant="-25" id="srg-IW-rPt"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Calendar" id="Xpa-jz-eVl"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar" id="Xpa-jz-eVl"/>
                     <connections>
                         <outlet property="calendarTable" destination="5Cg-tn-6BS" id="3sx-s1-Q4s"/>
                     </connections>
@@ -236,7 +236,7 @@
                             <constraint firstItem="uZq-Dv-Zz5" firstAttribute="centerX" secondItem="G15-Vn-6O6" secondAttribute="centerX" id="xHR-E0-5fQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Request" id="PFR-cK-U8f"/>
+                    <tabBarItem key="tabBarItem" title="Request" image="requests" id="PFR-cK-U8f"/>
                     <connections>
                         <outlet property="artistField" destination="gDm-su-kzT" id="dlP-wE-fTW"/>
                         <outlet property="songTitleField" destination="UoC-Jn-v3T" id="gTR-82-UKd"/>
@@ -272,7 +272,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="W9v-I6-1zN" secondAttribute="trailing" id="gnO-9A-bFL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Web Browser" id="nMW-Gt-d0w"/>
+                    <tabBarItem key="tabBarItem" title="Web Browser" image="web browser" id="nMW-Gt-d0w"/>
                     <connections>
                         <outlet property="browser" destination="W9v-I6-1zN" id="rIe-Wf-D0A"/>
                     </connections>
@@ -314,7 +314,7 @@
                             <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="uEQ-bP-65X" secondAttribute="bottom" id="nxt-MS-Gbf"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Schedule" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Schedule" image="schedule" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="scheduleTable" destination="uEQ-bP-65X" id="rMf-2Q-oTc"/>
                     </connections>
@@ -347,7 +347,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="calendar" width="40" height="40"/>
+        <image name="nowplaying" width="40" height="40"/>
+        <image name="requests" width="40" height="40"/>
+        <image name="schedule" width="40" height="40"/>
+        <image name="web browser" width="40" height="40"/>
     </resources>
 </document>
